@@ -1,6 +1,9 @@
-'''
-Adapted from: https://curiousily.com/posts/sentiment-analysis-with-bert-and-hugging-face-using-pytorch-and-python/
-'''
+"""
+Sentence classification project, internship at National Science Library，Chinese Academy of Sciences.
+main.py: training & testing of the model.
+         Adapted from: https://curiousily.com/posts/sentiment-analysis-with-bert-and-hugging-face-using-pytorch-and-python/
+Author: Feilian Xie <fxie49@gatech.edu>
+"""
 
 # Uncomment the following to run as a jupyter notebook
 # !pip install py-cpuinfo
@@ -33,17 +36,10 @@ from transformers import BertModel, BertForSequenceClassification, BertTokenizer
 from ANSI_color_codes import *
 
 
-# Uncomment the following snippet when running as a Jupyter notebook
-# gpu_info = !nvidia-smi
-# gpu_info = '\n'.join(gpu_info)
-# if gpu_info.find('failed') >= 0:
-#     print('Select the Runtime > "Change runtime type" menu to enable a GPU accelerator, ')
-#     print('and then re-execute this cell.')
-# else:
-#     print(gpu_info)
-
-
 class CustomDataset(Dataset):
+    """
+    Provide a customized dataset.
+    """
 
     def __init__(self, sentences, is_type, tokenizer, max_len):
         self.sentences = sentences
@@ -77,8 +73,16 @@ class CustomDataset(Dataset):
         }
 
 
-# Create custom PyTorch dataloader (Combines a dataset and a sampler, and provides an iterable over the given dataset.)
 def create_data_loader(df, tokenizer, max_len, batch_size):
+    """
+    Create a customized PyTorch dataloader (which combines a dataset and a sampler, and provides an iterable over the given dataset.)
+    :param df: pandas dataframe.
+    :param tokenizer: BERT tokenizer of huggingface.
+    :param max_len: maximum input length of the tokenizer.
+    :param batch_size: number of data instances loaded at a time.
+    :return: a customized PyTorch dataloader.
+    """
+
     ds = CustomDataset(
         sentences=df["2"].to_numpy(),
         is_type=df["IsType"].to_numpy(),
@@ -95,10 +99,16 @@ def create_data_loader(df, tokenizer, max_len, batch_size):
 
 
 class SentenceClassifier(nn.Module):
+    """
+    Our model:
+    BERT encoder followed by a MLP classifier with or without a hidden layer (followed by a dropout layer).
+    In either case, a dropout layer is applied to BERT's output.
+    """
 
     def __init__(self, n_classes, drop_rates, xavier_init=False, hidden_size=None):
         super(SentenceClassifier, self).__init__()
         '''
+        # Uncomment the triple single quote and comment the following line when running the script for the first time.
         self.bert = BertModel.from_pretrained(PRE_TRAINED_MODEL_NAME)
         bert_model.save_pretrained('./Model/')
         '''
@@ -130,8 +140,20 @@ class SentenceClassifier(nn.Module):
             return self.out(self.drop(pooled_output))
 
 
-# One training epoch (forward prop + back prop)
 def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_examples, is_bfsc=False):
+    """
+    Models one training epoch (forward prop + back prop).
+    :param model: instance of the class "SentenceClassifier" when is_bfsc=False, instance of "BertForSequenceClassification" otherwise.
+    :param data_loader: instance of the class "create_data_loader".
+    :param loss_fn: loss function.
+    :param optimizer:
+    :param device:
+    :param scheduler: scheduler which updates the learning rate.
+    :param n_examples: number of training examples.
+    :param is_bfsc: True if "BertForSequenceClassification" provides the model.
+    :return: training precision, recall, f1 score, accuracy, loss per training example.
+    """
+
     model = model.train()  # Put Model in train mode (different behavior for the dropout layer)
 
     # For one epoch
@@ -187,8 +209,18 @@ def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_exa
     return precision, recall, f1, acc, tot_loss / n_examples
 
 
-# Evaluation (forward prop)
 def eval_model(model, data_loader, loss_fn, device, n_examples, is_bfsc=False):
+    """
+    Evaluation of model performance (forward prop) on validation/testing dataset.
+    :param model: instance of the class "SentenceClassifier" when is_bfsc=False, instance of "BertForSequenceClassification" otherwise.
+    :param data_loader: instance of the class "create_data_loader".
+    :param loss_fn: loss function.
+    :param device:
+    :param n_examples: number of validation/testing examples.
+    :param is_bfsc: True if "BertForSequenceClassification" provides the model.
+    :return: validation/testing precision, recall, f1 score, accuracy, loss per validation/testing example.
+    """
+
     model = model.eval()  # Put Model in eval mode (different behavior for the dropout layer)
 
     tot_loss = 0
@@ -238,6 +270,16 @@ def eval_model(model, data_loader, loss_fn, device, n_examples, is_bfsc=False):
 
 
 def get_predictions(model, data_loader, device, save_preds_as_csv=True, is_bfsc=False):
+    """
+    Generate predictions with model.
+    :param model: instance of the class "SentenceClassifier" when is_bfsc=False, of "BertForSequenceClassification" otherwise.
+    :param data_loader: instance of the class "create_data_loader".
+    :param device:
+    :param save_preds_as_csv: True if predictions are also saved in a csv file while outputting by the function as a pandas dataframe.
+    :param is_bfsc: True if "BertForSequenceClassification" provides the model.
+    :return: predictions (pandas dataframe).
+    """
+
     model = model.eval()  # Put Model in eval mode (different behavior for the dropout layer)
 
     sentences = []
@@ -283,7 +325,8 @@ def get_predictions(model, data_loader, device, save_preds_as_csv=True, is_bfsc=
     df_result = pd.DataFrame(result, columns=['Sentences', 'Predictions', 'Probabilities', 'True labels'])
     if save_preds_as_csv:
         df_result.to_csv("./Results/Test_preds.csv", index=False)
-    return df_result
+    else:
+        return df_result
 
 
 if __name__ == '__main__':
@@ -525,7 +568,7 @@ if __name__ == '__main__':
     logger.info(f'Test accuracy {test_acc} f1 {test_f1} precision {test_precision} recall {test_recall}')
 
     # Get predictions for test set
-    df_test_result = get_predictions(
+    _ = get_predictions(
         model,
         test_data_loader,
         device,
@@ -571,14 +614,3 @@ if __name__ == '__main__':
     gc.collect()  # Collect garbage
     cutorch.empty_cache()
     logger.info(f'GPU memory occupied: {cutorch.memory_reserved() / 1e9} gb')
-
-    # '''
-    # Print GPU info, uncomment the following snippet when running on Google Colab Pro
-    # '''
-    # gpu_info = !nvidia-smi
-    # gpu_info = '\n'.join(gpu_info)
-    # if gpu_info.find('failed') >= 0:
-    #     print('Select the Runtime > "Change runtime type" menu to enable a GPU accelerator, ')
-    #     print('and then re-execute this cell.')
-    # else:
-    #     print(gpu_info)
