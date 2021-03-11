@@ -1,0 +1,68 @@
+{
+  "Code testing": false,
+  "Dataset/sentence type": 1,
+  "Tokenizer parallelization": "true",
+  "CPU": "Intel(R) Xeon(R) Platinum 8157 CPU @ 2.30GHz",
+  "Device": "GeForce RTX 3090",
+  "Random seed": 42,
+  "Bert model": "bert-base-chinese",
+  "Is 'BertForSequenceClassification'": false,
+  "Nb of sentences for training/validation/testing": [
+    864,
+    5000,
+    5000
+  ],
+  "Total grid search time (min)": 23.756786255041757,
+  "Epochs": 10,
+  "Max length": 256,
+  "Initial learning rates": [
+    2e-06,
+    6e-06,
+    1e-05
+  ],
+  "Batch sizes": [
+    16,
+    32
+  ],
+  "Drop rate": [
+    0.3,
+    0.5
+  ],
+  "Xavier initialization": false,
+  "Hidden size": 384,
+  "Validation f1 values": [
+    [
+      0.8884488448844885,
+      0.888745148771022,
+      0.8798955613577023
+    ],
+    [
+      0.8784810126582279,
+      0.8850129198966409,
+      0.8806366047745359
+    ]
+  ],
+  "Corresponding epoch numbers": [
+    [
+      5.0,
+      4.0,
+      6.0
+    ],
+    [
+      6.0,
+      4.0,
+      5.0
+    ]
+  ],
+  "Best parameters (bs, lr, epoch)": [
+    16,
+    6e-06,
+    4
+  ],
+  "Testing performances (acc, f1, precision, recall)": [
+    0.9646,
+    0.8881869867340493,
+    0.8679012345679012,
+    0.9094437257438551
+  ]
+}
