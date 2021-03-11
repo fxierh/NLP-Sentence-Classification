@@ -19,3 +19,6 @@ WARNING = '\033[93m'
 OKBLUE = '\033[94m'
 HEADER = '\033[95m'
 OKCYAN = '\033[96m'
+
+# TODO:
+#   1) complete ANSI escape codes

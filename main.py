@@ -548,7 +548,7 @@ if __name__ == '__main__':
 
     # Load best model
     logger.info('')
-    logger.info('Loading best model：')
+    logger.info('Loading best model: ')
     model = torch.load('Model/best_model_state.bin')
     model.eval()
     model = model.to(device)  # Move Model to GPU
@@ -604,10 +604,7 @@ if __name__ == '__main__':
     with open("Results/exp_record_" + time.strftime("%Y%m%d_%H%M%S") + ".json", "w") as outfile:
         json.dump(exp_record, outfile)
 
-    # Uncomment the following snippet when running as a Jupyter notebook
-    '''
-    Release GPU memory
-    '''
+    # Release GPU memory
     logger.info('')
     logger.info('Releasing GPU memory: ')
     del model, train_data_loader, val_data_loader, test_data_loader, loss_fn, optimizer, scheduler
