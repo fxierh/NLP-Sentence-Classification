@@ -27,7 +27,6 @@ import torch.cuda as cutorch
 import torch.nn.functional as F
 from cpuinfo import get_cpu_info
 from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import train_test_split
 from torch import nn
 from torch.utils.data import Dataset, DataLoader  # Create custom PyTorch dataset and dataloader
 from transformers import BertModel, BertForSequenceClassification, BertTokenizerFast, AdamW, \
@@ -398,31 +397,25 @@ if __name__ == '__main__':
     logger.info("Loading datasets:")
 
     if dataset == 1:
-        df_train = pd.read_csv("Datasets/Train_1.csv")
-        df_test = pd.read_csv("Datasets/Test_1.csv")
+        df = pd.read_csv("Datasets/Dataset_1.csv")
     elif dataset == 2:
-        df_train = pd.read_csv("Datasets/Train_2.csv")
-        df_test = pd.read_csv("Datasets/Test_2.csv")
+        df = pd.read_csv("Datasets/Dataset_2.csv")
     else:
         logger.critical(f'Wrong dataset type: {dataset}')
         raise Exception('Dataset/sentence type can only be 1 or 2!')
-    positive_sentence_ratio_train = df_train['IsType'].value_counts()[1] / len(df_train.index)  # Train set balanced?
-    positive_sentence_ratio_test = df_test['IsType'].value_counts()[1] / len(df_test.index)  # Train set balanced?
-    logger.info(f'Type {dataset} sentence ratio for train set: {positive_sentence_ratio_train}')
-    logger.info(f'Type {dataset} sentence ratio for dev and test sets: {positive_sentence_ratio_test}')
+    positive_sentence_ratio = df['IsType'].value_counts()[1] / len(df.index)  # Dataset balanced?
+    logger.info(f'Type {dataset} sentence ratio: {positive_sentence_ratio}')
 
-    '''
-    Smaller train/dev/test set for code testing
-    '''
-    if code_testing:
-        df_train = df_train[0:10]
-        df_test = df_test[0:10]
+    if code_testing:  # Smaller train/dev/test set for code testing
+        df_train = df[0:10]
+        df_val = df[10:20]
+        df_test = df[20:30]
     else:
-        df_test = df_test[0:10000]
-    df_val, df_test = train_test_split(df_test, test_size=0.5, random_state=RANDOM_SEED)
-    logger.info(f'Number of sentences used for training: {len(df_train.index)}')
-    logger.info(f'Number of sentences used for validation: {len(df_val.index)}')
-    logger.info(f'Number of sentences used for testing: {len(df_test.index)}')
+        df_train = df[0:10000]
+        df_val = df[10000:15000]
+        df_test = df[15000:20000]
+    logger.info(
+        f'Number of sentences used for training/validation/testing: {len(df_train.index)}/{len(df_val.index)}/{len(df_test.index)}')
 
     # Grid search
     logger.info('')
