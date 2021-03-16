@@ -1,0 +1,25 @@
+CST 2021-03-16 13:22:58.571 - root - main.py - line 346 - INFO - Initializing:
+CST 2021-03-16 13:22:58.571 - root - main.py - line 349 - INFO - Code being tested: False
+CST 2021-03-16 13:22:58.571 - root - main.py - line 352 - INFO - "BertForSequenceClassification" model is used instead of the plain BERT model: False
+CST 2021-03-16 13:22:58.571 - root - main.py - line 355 - INFO - Dataset: type 1 sentences
+CST 2021-03-16 13:22:58.572 - root - main.py - line 361 - INFO - Tokenizer parallelization: true
+CST 2021-03-16 13:23:00.142 - root - main.py - line 364 - INFO - CPU type: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+CST 2021-03-16 13:23:00.142 - root - main.py - line 367 - INFO - Device: cpu
+CST 2021-03-16 13:23:00.143 - root - main.py - line 374 - INFO - Random seed: 42
+CST 2021-03-16 13:23:00.175 - root - main.py - line 387 - INFO - Number of epochs: 10
+CST 2021-03-16 13:23:00.176 - root - main.py - line 393 - INFO - Max length = 256
+CST 2021-03-16 13:23:00.176 - root - main.py - line 396 - INFO - 
+CST 2021-03-16 13:23:00.176 - root - main.py - line 397 - INFO - Loading datasets:
+CST 2021-03-16 13:23:00.227 - root - main.py - line 407 - INFO - Type 1 sentence ratio: 0.1525
+CST 2021-03-16 13:23:00.227 - root - main.py - line 417 - INFO - Number of sentences used for training/validation/testing: 10000/5000/5000
+CST 2021-03-16 13:23:00.227 - root - main.py - line 421 - INFO - 
+CST 2021-03-16 13:23:00.227 - root - main.py - line 422 - INFO - Grid search begins: 
+CST 2021-03-16 13:23:00.227 - root - main.py - line 426 - INFO - Batch sizes: [16, 32]
+CST 2021-03-16 13:23:00.227 - root - main.py - line 427 - INFO - Initial learning rates: [2e-06, 6e-06, 1e-05]
+CST 2021-03-16 13:23:00.227 - root - main.py - line 430 - INFO - Drop rates: 0.3
+CST 2021-03-16 13:23:00.227 - root - main.py - line 432 - INFO - Xavier initialization: False
+CST 2021-03-16 13:23:00.228 - root - main.py - line 434 - INFO - Hidden layer: None
+CST 2021-03-16 13:23:01.783 - root - main.py - line 477 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-16 13:23:01.784 - root - main.py - line 478 - INFO - Batch size: 16, initial learning rate: 2e-06, total steps: 6250
+CST 2021-03-16 13:23:01.784 - root - main.py - line 479 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-16 13:23:01.784 - root - main.py - line 487 - INFO - Epoch 1/10

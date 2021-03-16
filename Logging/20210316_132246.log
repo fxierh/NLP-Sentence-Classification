@@ -1,0 +1,5 @@
+CST 2021-03-16 13:22:46.715 - root - main.py - line 346 - INFO - Initializing:
+CST 2021-03-16 13:22:46.716 - root - main.py - line 349 - INFO - Code being tested: False
+CST 2021-03-16 13:22:46.716 - root - main.py - line 352 - INFO - "BertForSequenceClassification" model is used instead of the plain BERT model: False
+CST 2021-03-16 13:22:46.716 - root - main.py - line 355 - INFO - Dataset: type 1 sentences
+CST 2021-03-16 13:22:46.716 - root - main.py - line 361 - INFO - Tokenizer parallelization: true
