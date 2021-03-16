@@ -20,8 +20,10 @@ import random
 import time
 import warnings
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd  # csv format data
+import seaborn as sns  # Statistical plot
 import torch
 import torch.cuda as cutorch
 import torch.nn.functional as F
@@ -106,6 +108,7 @@ class SentenceClassifier(nn.Module):
 
     def __init__(self, n_classes, drop_rates, xavier_init=False, hidden_size=None):
         super(SentenceClassifier, self).__init__()
+
         '''
         # Uncomment the triple single quote and comment the following line when running the script for the first time.
         self.bert = BertModel.from_pretrained(PRE_TRAINED_MODEL_NAME)
@@ -383,14 +386,8 @@ if __name__ == '__main__':
     if code_testing:
         EPOCHS = 2
     else:
-        EPOCHS = 10
+        EPOCHS = 4
     logger.info(f'Number of epochs: {EPOCHS}')
-    '''
-    Max length chosen according to training sequence (token) length distribution.
-    Max length 256 -> ~8/13 gb GPU memory needed for batch size = 16/32
-    '''
-    MAX_LEN = 256
-    logger.info(f'Max length = {MAX_LEN}')
 
     # Load datasets
     logger.info('')
@@ -417,12 +414,37 @@ if __name__ == '__main__':
     logger.info(
         f'Number of sentences used for training/validation/testing: {len(df_train.index)}/{len(df_val.index)}/{len(df_test.index)}')
 
+    plot_input_len_dist = False  # True if plot distribution of training sequence (token) lengths
+    if plot_input_len_dist:
+        token_lens = []
+        for txt in df_train["2"]:
+            # The encode method can also be used
+            tokens = tokenizer(
+                text=txt,
+                padding=False,
+                truncation=True,
+                max_length=512,
+                add_special_tokens=True,  # Add '[CLS]' and '[SEP]'
+                return_attention_mask=False,
+                return_token_type_ids=False
+            )['input_ids']
+            token_lens.append(len(tokens))
+        sns.distplot(token_lens, kde=False)
+        plt.xlabel('Token count (train set)')
+        plt.show()
+    '''
+    Max length chosen according to training sequence (token) length distribution.
+    Max length 256 -> ~7-8/11-13gb GPU memory required for batch size = 16/32
+    '''
+    MAX_LEN = 256
+    logger.info(f'Max length = {MAX_LEN}')
+
     # Grid search
     logger.info('')
     logger.info("Grid search begins: ")
 
-    learning_rates = [2e-6, 6e-6, 1e-5]
-    batch_sizes = [16, 32]
+    learning_rates = [1e-6, 1e-5, 1e-4]
+    batch_sizes = [32]
     logger.info(f'Batch sizes: {batch_sizes}')
     logger.info(f'Initial learning rates: {learning_rates}')
     if not is_bfsc:

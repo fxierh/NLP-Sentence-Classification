@@ -2,10 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64b71eb5-dd00-4c7a-9620-0588770ef773" name="Default Changelist" comment="Version 1.0 (c)">
-      <change afterPath="$PROJECT_DIR$/Logging/20210316_132236.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Logging/20210316_132246.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Logging/20210316_132258.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logging/20210316_172244.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logging/20210316_182532.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210316_175059.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SentenceClassification.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SentenceClassification.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logging/20210311_105051.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logging/20210311_202903.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logging/20210311_204048.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logging/20210311_212821.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logging/20210316_132236.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logging/20210316_132246.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logging/20210316_132258.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/Test_preds.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Test_preds.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/req_lacked.txt" beforeDir="false" afterPath="$PROJECT_DIR$/req_lacked.txt" afterDir="false" />
     </list>
     <list id="ddb292b3-15a7-4abe-abf0-dcacae0f41df" name="Revert &quot;Initial version&quot;" comment="Revert &quot;Initial version&quot;&#10;&#10;This reverts commit 01696856" />
     <list id="184a2eb1-dc5c-4425-b381-53bc4d40829f" name="Uncommitted changes before Checkout at 16/03/2021 13:03 [Default Changelist]" comment="Version 1.0 (c)" />
@@ -25,8 +39,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Freeze Requirements File" />
         <option value="Python Script" />
+        <option value="Freeze Requirements File" />
       </list>
     </option>
   </component>
@@ -37,6 +51,19 @@
     <option name="NEW_BASE" value="Change_of_train_set" />
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="Change_of_train_set" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="fxie &lt;feilian1000@126.com&gt;" />
@@ -260,6 +287,7 @@
       <workItem from="1615477011395" duration="179000" />
       <workItem from="1615477205638" duration="13034000" />
       <workItem from="1615872221184" duration="119000" />
+      <workItem from="1615872356657" duration="9651000" />
     </task>
     <task id="LOCAL-00001" summary="Initial version">
       <created>1615463955614</created>
@@ -331,7 +359,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615520064164</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Version 1.0 (c)">
+      <created>1615872376837</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1615872376837</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -381,7 +416,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SentenceClassification$TrainDataPreprocessing.coverage" NAME="TrainDataPreprocessing Coverage Results" MODIFIED="1612755995528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SentenceClassification$main.coverage" NAME="main Coverage Results" MODIFIED="1615872177306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SentenceClassification$main.coverage" NAME="main Coverage Results" MODIFIED="1615893757246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$Try2.coverage" NAME="Try2 Coverage Results" MODIFIED="1612431879659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$TestDataPostprocessing.coverage" NAME="TestDataPostprocessing Coverage Results" MODIFIED="1612538257254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$LoadDataset.coverage" NAME="DataPreprocessing Coverage Results" MODIFIED="1612257999040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
