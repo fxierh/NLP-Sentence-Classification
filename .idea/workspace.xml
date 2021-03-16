@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64b71eb5-dd00-4c7a-9620-0588770ef773" name="Default Changelist" comment="Version 1.0 (c)">
-      <change beforePath="$PROJECT_DIR$/.idea/SentenceClassification.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SentenceClassification.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestDataPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/TestDataPreprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logging/20210316_132236.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logging/20210316_132246.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logging/20210316_132258.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <list id="ddb292b3-15a7-4abe-abf0-dcacae0f41df" name="Revert &quot;Initial version&quot;" comment="Revert &quot;Initial version&quot;&#10;&#10;This reverts commit 01696856" />
-    <list id="184a2eb1-dc5c-4425-b381-53bc4d40829f" name="Uncommitted changes before Checkout at 16/03/2021 13:03 [Default Changelist]" comment="">
-      <change afterPath="$PROJECT_DIR$/Datasets/Dataset_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Logging/20210316_122320.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Logging/20210316_122747.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Logging/20210316_123208.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Logging/20210316_123444.log" afterDir="false" />
-    </list>
+    <list id="184a2eb1-dc5c-4425-b381-53bc4d40829f" name="Uncommitted changes before Checkout at 16/03/2021 13:03 [Default Changelist]" comment="Version 1.0 (c)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +34,7 @@
     <option name="BRANCH" value="Github_repo/master" />
   </component>
   <component name="Git.Rebase.Settings">
-    <option name="NEW_BASE" value="master" />
+    <option name="NEW_BASE" value="Change_of_train_set" />
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -49,6 +43,7 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -101,7 +96,29 @@
       <recent name="$PROJECT_DIR$/Datasets" />
     </key>
   </component>
-  <component name="RunManager" selected="Shell Script.Collect_all.sh">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="TestDataPreprocessing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SentenceClassification" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TestDataPreprocessing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Try" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="SentenceClassification" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -168,28 +185,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main_v1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="SentenceClassification" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_v1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Collect_all.sh" type="ShConfigurationType" temporary="true">
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
       <option name="SCRIPT_PATH" value="$PROJECT_DIR$/Collect_all.sh" />
@@ -231,11 +226,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.TestDataPreprocessing" />
         <item itemvalue="Shell Script.Collect_all.sh" />
         <item itemvalue="Shell Script.Collect_n_zip.sh" />
         <item itemvalue="Shell Script.Install_req.sh" />
         <item itemvalue="Python.Try" />
-        <item itemvalue="Python.main_v1" />
       </list>
     </recent_temporary>
   </component>
@@ -264,6 +259,7 @@
       <workItem from="1615469282245" duration="4500000" />
       <workItem from="1615477011395" duration="179000" />
       <workItem from="1615477205638" duration="13034000" />
+      <workItem from="1615872221184" duration="119000" />
     </task>
     <task id="LOCAL-00001" summary="Initial version">
       <created>1615463955614</created>
@@ -385,12 +381,12 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SentenceClassification$TrainDataPreprocessing.coverage" NAME="TrainDataPreprocessing Coverage Results" MODIFIED="1612755995528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SentenceClassification$main.coverage" NAME="main Coverage Results" MODIFIED="1615869283818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SentenceClassification$main.coverage" NAME="main Coverage Results" MODIFIED="1615872177306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$Try2.coverage" NAME="Try2 Coverage Results" MODIFIED="1612431879659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$TestDataPostprocessing.coverage" NAME="TestDataPostprocessing Coverage Results" MODIFIED="1612538257254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$LoadDataset.coverage" NAME="DataPreprocessing Coverage Results" MODIFIED="1612257999040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$main_v1.coverage" NAME="main_v1 Coverage Results" MODIFIED="1615370544004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SentenceClassification$TestDataPreprocessing.coverage" NAME="TestDataPreprocessing Coverage Results" MODIFIED="1615868870311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SentenceClassification$TestDataPreprocessing.coverage" NAME="TestDataPreprocessing Coverage Results" MODIFIED="1615872169556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$Try.coverage" NAME="Try Coverage Results" MODIFIED="1615865882377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
