@@ -27,6 +27,20 @@
           </excludedPaths>
         </serverdata>
       </paths>
+      <paths name="mist@gpu180.mistgpu.xyz:20201">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/mist" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@net.videojj.com:6157">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_640" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
     </serverData>
   </component>
 </project>

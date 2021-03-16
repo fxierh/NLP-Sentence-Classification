@@ -1,3 +1,5 @@
-# Requirements lacked by Matpool
+# Requirements often lacked by cloud computing servers
 py-cpuinfo>=7.0.0
 transformers>=4.3.3
+pandas==1.2.3
+scikit-learn==0.24.1

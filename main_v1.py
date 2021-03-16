@@ -298,7 +298,7 @@ if __name__ == '__main__':
     code_testing = False  # Whether we are testing the code
     print(f'Code being tested: {code_testing}')
 
-    first_time_run = True  # BERT needs to be downloaded if the code is run for the first time
+    first_time_run = False  # BERT needs to be downloaded if the code is run for the first time
 
     os.environ["TOKENIZERS_PARALLELISM"] = "true"  # Avoid warning messages caused by multiprocessing (dataloader)
     print(f'Tokenizer parallelization: {os.environ["TOKENIZERS_PARALLELISM"]}')
