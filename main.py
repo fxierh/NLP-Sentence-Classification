@@ -26,10 +26,12 @@ import pandas as pd  # csv format data
 import seaborn as sns  # Statistical plot
 import torch
 import torch.cuda as cutorch
+import torch.distributed as dist
 import torch.nn.functional as F
 from cpuinfo import get_cpu_info
 from sklearn.metrics import confusion_matrix
 from torch import nn
+from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data import Dataset, DataLoader  # Create custom PyTorch dataset and dataloader
 from transformers import BertModel, BertForSequenceClassification, BertTokenizerFast, AdamW, \
     get_linear_schedule_with_warmup, logging as tlogging
@@ -364,10 +366,19 @@ if __name__ == '__main__':
     logger.info(f'Tokenizer parallelization: {os.environ["TOKENIZERS_PARALLELISM"]}')
 
     cpu = get_cpu_info()['brand_raw']
-    logger.info(f'CPU type: {cpu}')
+    logger.info(f'CPU: {cpu}')
 
+    # GPUs
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    logger.info(f"Device: {torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'cpu'}")
+    gpu_count = torch.cuda.device_count()
+    logger.info(f"Device count: {gpu_count}")
+    device_names = [torch.cuda.get_device_name(i) for i in range(gpu_count)] if torch.cuda.is_available() else 'cpu'
+    logger.info(f"Device name(s): {device_names}")
+    # os.environ['MASTER_ADDR'] = '127.0.0.1'  # '127.0.0.1' = 'localhost'
+    # os.environ['MASTER_PORT'] = '1234'  # a random number
+    if torch.distributed.is_nccl_available():
+        # dist.init_process_group(backend='nccl', world_size=device_count, rank=0)
+        dist.init_process_group(backend="nccl", init_method="env://", rank=0, world_size=gpu_count)
 
     RANDOM_SEED = 42  # Constants are named all CAPITAL
     random.seed(RANDOM_SEED)
@@ -443,15 +454,15 @@ if __name__ == '__main__':
     logger.info('')
     logger.info("Grid search begins: ")
 
-    learning_rates = [1e-6, 1e-5, 1e-4]
+    learning_rates = [7e-6]
     batch_sizes = [32]
     logger.info(f'Batch sizes: {batch_sizes}')
     logger.info(f'Initial learning rates: {learning_rates}')
     if not is_bfsc:
-        drop_rates = 0.3  # Drop rates of the dropout layers
-        logger.info(f"Drop rates: {drop_rates}")
         xavier_init = False
         logger.info(f'Xavier initialization: {xavier_init}')
+        drop_rates = 0.3  # Drop rates of the dropout layers
+        logger.info(f"Drop rates: {drop_rates}")
         hidden_size = None  # None: no hidden layer; 512: single hidden layer of 512 neurons
         logger.info(f'Hidden layer: {hidden_size}')
 
@@ -476,6 +487,10 @@ if __name__ == '__main__':
             else:
                 model = SentenceClassifier(n_classes=2, drop_rates=drop_rates, xavier_init=xavier_init,
                                            hidden_size=hidden_size)
+
+            if gpu_count > 1:  # Multiple GPUs
+                # model = nn.DataParallel(model)
+                model = DDP(model)
 
             model = model.to(device)  # Move Model to GPU
 
@@ -597,7 +612,8 @@ if __name__ == '__main__':
         "Dataset/sentence type": dataset,
         "Tokenizer parallelization": os.environ["TOKENIZERS_PARALLELISM"],
         "CPU": cpu,
-        "Device": torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU",
+        "GPU count": gpu_count,
+        "Device names": device_names,
         "Random seed": RANDOM_SEED,
         "Bert model": PRE_TRAINED_MODEL_NAME,
         "Is 'BertForSequenceClassification'": is_bfsc,
