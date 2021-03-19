@@ -1,0 +1,60 @@
+{
+  "Code testing": true,
+  "Dataset/sentence type": 1,
+  "Tokenizer parallelization": "true",
+  "CPU": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+  "GPU count": 0,
+  "Device names": "cpu",
+  "Random seed": 42,
+  "Bert model": "bert-base-chinese",
+  "Is 'BertForSequenceClassification'": false,
+  "Nb of sentences for training/validation/testing": [
+    10,
+    10,
+    10
+  ],
+  "Total grid search time (min)": 3.2133557120958964,
+  "Epochs": 2,
+  "Max length": 256,
+  "Initial learning rates": [
+    7e-06
+  ],
+  "Batch sizes": [
+    32
+  ],
+  "Weight decay rates": [
+    0.1,
+    0.2
+  ],
+  "Drop rate": 0.3,
+  "Xavier initialization": false,
+  "Hidden layer": null,
+  "Validation f1 values": [
+    [
+      [
+        0.0,
+        0.19999999999999998
+      ]
+    ]
+  ],
+  "Corresponding epoch numbers": [
+    [
+      [
+        1.0,
+        2.0
+      ]
+    ]
+  ],
+  "Best parameters (bs, lr, wd, epoch)": [
+    32,
+    7e-06,
+    0.2,
+    2
+  ],
+  "Testing performances (acc, f1, precision, recall)": [
+    0.4,
+    0.4,
+    0.25,
+    1.0
+  ]
+}

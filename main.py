@@ -26,12 +26,10 @@ import pandas as pd  # csv format data
 import seaborn as sns  # Statistical plot
 import torch
 import torch.cuda as cutorch
-import torch.distributed as dist
 import torch.nn.functional as F
 from cpuinfo import get_cpu_info
 from sklearn.metrics import confusion_matrix
 from torch import nn
-from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data import Dataset, DataLoader  # Create custom PyTorch dataset and dataloader
 from transformers import BertModel, BertForSequenceClassification, BertTokenizerFast, AdamW, \
     get_linear_schedule_with_warmup, logging as tlogging
@@ -92,10 +90,11 @@ def create_data_loader(df, tokenizer, max_len, batch_size):
         tokenizer=tokenizer,
         max_len=max_len
     )
+    logger.debug("Dataloader: shuffle=True")
 
     return DataLoader(
         ds,
-        shuffle=False,
+        shuffle=True,
         batch_size=batch_size,
         num_workers=4
     )
@@ -144,7 +143,7 @@ class SentenceClassifier(nn.Module):
             return self.out(self.drop(pooled_output))
 
 
-def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_examples, is_bfsc=False):
+def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_examples, logger, is_bfsc=False):
     """
     Models one training epoch (forward prop + back prop).
     :param model: instance of the class "SentenceClassifier" when is_bfsc=False, instance of "BertForSequenceClassification" otherwise.
@@ -209,11 +208,14 @@ def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_exa
     if np.isnan(f1):
         f1 = 0
     acc = (tp_tot + tn_tot) / n_examples
+    ave_loss = tot_loss / n_examples
 
-    return precision, recall, f1, acc, tot_loss / n_examples
+    logger.info(f'Train loss {ave_loss} accuracy {acc} f1 {f1} precision {precision} recall {recall}')
+
+    return precision, recall, f1, acc, ave_loss
 
 
-def eval_model(model, data_loader, loss_fn, device, n_examples, is_bfsc=False):
+def eval_model(model, data_loader, loss_fn, device, n_examples, logger, is_bfsc=False):
     """
     Evaluation of model performance (forward prop) on validation/testing dataset.
     :param model: instance of the class "SentenceClassifier" when is_bfsc=False, instance of "BertForSequenceClassification" otherwise.
@@ -269,8 +271,11 @@ def eval_model(model, data_loader, loss_fn, device, n_examples, is_bfsc=False):
     if np.isnan(f1):
         f1 = 0
     acc = (tp_tot + tn_tot) / n_examples
+    ave_loss = tot_loss / n_examples
 
-    return precision, recall, f1, acc, tot_loss / n_examples
+    logger.info(f'Eval loss {ave_loss} accuracy {acc} f1 {f1} precision {precision} recall {recall}')
+
+    return precision, recall, f1, acc, ave_loss
 
 
 def get_predictions(model, data_loader, device, save_preds_as_csv=True, is_bfsc=False):
@@ -334,8 +339,8 @@ def get_predictions(model, data_loader, device, save_preds_as_csv=True, is_bfsc=
 
 
 if __name__ == '__main__':
-    # Define logger
-    logging.basicConfig(
+    # Initialization
+    logging.basicConfig(  # Define logger
         filename="./Logging/" + time.strftime("%Y%m%d_%H%M%S") + ".log",
         level=logging.DEBUG,
         format='%(asctime)s.%(msecs)03d - %(name)s - %(filename)s - line %(lineno)s - %(levelname)s - %(message)s',
@@ -347,7 +352,6 @@ if __name__ == '__main__':
     console_handler.setFormatter(logging.Formatter(OKBLUE + '%(asctime)s - %(message)s' + RESET, "%H:%M:%S"))
     logger.addHandler(console_handler)
 
-    # Initialization
     logger.info('Initializing:')
 
     code_testing = False  # Whether we are testing the code
@@ -376,9 +380,6 @@ if __name__ == '__main__':
     logger.info(f"Device name(s): {device_names}")
     # os.environ['MASTER_ADDR'] = '127.0.0.1'  # '127.0.0.1' = 'localhost'
     # os.environ['MASTER_PORT'] = '1234'  # a random number
-    if torch.distributed.is_nccl_available():
-        # dist.init_process_group(backend='nccl', world_size=device_count, rank=0)
-        dist.init_process_group(backend="nccl", init_method="env://", rank=0, world_size=gpu_count)
 
     RANDOM_SEED = 42  # Constants are named all CAPITAL
     random.seed(RANDOM_SEED)
@@ -405,25 +406,29 @@ if __name__ == '__main__':
     logger.info("Loading datasets:")
 
     if dataset == 1:
-        df = pd.read_csv("Datasets/Dataset_1.csv")
+        df_train = pd.read_csv("Datasets/Train_1.csv")
+        df_eval = pd.read_csv("Datasets/Eval_1.csv")
     elif dataset == 2:
-        df = pd.read_csv("Datasets/Dataset_2.csv")
+        df_train = pd.read_csv("Datasets/Train_2.csv")
+        df_eval = pd.read_csv("Datasets/Eval_2.csv")
     else:
         logger.critical(f'Wrong dataset type: {dataset}')
         raise Exception('Dataset/sentence type can only be 1 or 2!')
-    positive_sentence_ratio = df['IsType'].value_counts()[1] / len(df.index)  # Dataset balanced?
-    logger.info(f'Type {dataset} sentence ratio: {positive_sentence_ratio}')
 
     if code_testing:  # Smaller train/dev/test set for code testing
-        df_train = df[0:10]
-        df_val = df[10:20]
-        df_test = df[20:30]
+        df_train = df_train[0:10]
+        df_val = df_eval[0:10]
+        df_test = df_eval[10:20]
     else:
-        df_train = df[0:10000]
-        df_val = df[10000:15000]
-        df_test = df[15000:20000]
+        df_val = df_eval[0:5000]
+        df_test = df_eval[5000:10000]
     logger.info(
         f'Number of sentences used for training/validation/testing: {len(df_train.index)}/{len(df_val.index)}/{len(df_test.index)}')
+    pos_ratio_train = df_train['IsType'].value_counts()[1] / len(df_train.index)  # Train set balanced?
+    pos_ratio_val = df_val['IsType'].value_counts()[1] / len(df_val.index)  # Val set balanced?
+    pos_ratio_test = df_test['IsType'].value_counts()[1] / len(df_test.index)  # Test set balanced?
+    logger.info(
+        f'Type {dataset} sentence ratio in train/val/test set: {pos_ratio_train}/{pos_ratio_val}/{pos_ratio_test}')
 
     plot_input_len_dist = False  # True if plot distribution of training sequence (token) lengths
     if plot_input_len_dist:
@@ -456,8 +461,10 @@ if __name__ == '__main__':
 
     learning_rates = [7e-6]
     batch_sizes = [32]
+    weight_decay_rates = [0.1]
     logger.info(f'Batch sizes: {batch_sizes}')
     logger.info(f'Initial learning rates: {learning_rates}')
+    logger.info(f'Weight decay: {weight_decay_rates}')
     if not is_bfsc:
         xavier_init = False
         logger.info(f'Xavier initialization: {xavier_init}')
@@ -468,113 +475,111 @@ if __name__ == '__main__':
 
     loss_fn = nn.CrossEntropyLoss().to(device)
 
-    val_f1_grid = np.zeros((len(batch_sizes), len(learning_rates)))
-    epoch_grid = np.zeros((len(batch_sizes), len(learning_rates)))
-    best_val_f1_overall = 0
-
+    val_f1_grid = np.zeros((len(batch_sizes), len(learning_rates), len(weight_decay_rates)))
+    epoch_grid = np.zeros((len(batch_sizes), len(learning_rates), len(weight_decay_rates)))
+    best_val_f1_overall = -0.1
     t_tot = 0  # Total grid search time
 
     for i, bs in enumerate(batch_sizes):
         for j, lr in enumerate(learning_rates):
+            for k, wd in enumerate(weight_decay_rates):
 
-            if is_bfsc:
-                model = BertForSequenceClassification.from_pretrained(
-                    PRE_TRAINED_MODEL_NAME,
-                    num_labels=2,
-                    output_attentions=False,  # Whether the model returns attentions weights.
-                    output_hidden_states=False,  # Whether the model returns all hidden-states.
-                )
-            else:
-                model = SentenceClassifier(n_classes=2, drop_rates=drop_rates, xavier_init=xavier_init,
-                                           hidden_size=hidden_size)
+                '''
+                Custom dataset and dataloader.
+                Dataloader (an iterable): load a batch of data each iteration
+                '''
+                train_data_loader = create_data_loader(df_train, tokenizer, MAX_LEN, bs)
+                val_data_loader = create_data_loader(df_val, tokenizer, MAX_LEN, bs)
+                total_steps = len(train_data_loader) * EPOCHS  # len(train_data_loader) = number of (train) batches
 
-            if gpu_count > 1:  # Multiple GPUs
-                # model = nn.DataParallel(model)
-                model = DDP(model)
+                # Build model
+                if is_bfsc:
+                    model = BertForSequenceClassification.from_pretrained(
+                        PRE_TRAINED_MODEL_NAME,
+                        num_labels=2,
+                        output_attentions=False,  # Whether the model returns attentions weights.
+                        output_hidden_states=False,  # Whether the model returns all hidden-states.
+                    )
+                else:
+                    model = SentenceClassifier(n_classes=2, drop_rates=drop_rates, xavier_init=xavier_init,
+                                               hidden_size=hidden_size)
 
-            model = model.to(device)  # Move Model to GPU
+                if gpu_count > 1:  # Multiple GPUs
+                    model = nn.DataParallel(model)
+                    # model = DDP(model)
+                model = model.to(device)  # Move Model to GPU(s)
 
-            '''
-            Custom dataset and dataloader.
-            Dataloader (an iterable): load a batch of data each iteration
-            '''
-            train_data_loader = create_data_loader(df_train, tokenizer, MAX_LEN, bs)
-            val_data_loader = create_data_loader(df_val, tokenizer, MAX_LEN, bs)
-
-            optimizer = AdamW(model.parameters(), lr=lr, correct_bias=False)
-
-            total_steps = len(train_data_loader) * EPOCHS  # len(train_data_loader) = number of (train) batches
-
-            scheduler = get_linear_schedule_with_warmup(  # Scheduler: change learning rate of optimizer
-                optimizer,
-                num_warmup_steps=0,
-                num_training_steps=total_steps
-            )
-
-            logger.info('-' * 100)
-            logger.info(f'Batch size: {bs}, initial learning rate: {lr}, total steps: {total_steps}')
-            logger.info('-' * 100)
-
-            best_val_f1 = 0
-            best_epoch = 0
-            t0 = time.time()
-
-            for epoch in range(EPOCHS):  # Training loop
-
-                logger.info(f'Epoch {epoch + 1}/{EPOCHS}')
-
-                train_precision, train_recall, train_f1, train_acc, train_loss = train_epoch(
-                    model,
-                    train_data_loader,
-                    loss_fn,
+                '''
+                Weight decay (L2 regularization): data -= lr * weight_decay
+                '''
+                optimizer = AdamW(model.parameters(), lr=lr, correct_bias=False, weight_decay=wd)
+                scheduler = get_linear_schedule_with_warmup(  # Scheduler: change learning rate of optimizer
                     optimizer,
-                    device,
-                    scheduler,
-                    len(df_train),
-                    is_bfsc
+                    num_warmup_steps=0,
+                    num_training_steps=total_steps
                 )
 
+                logger.info('-' * 100)
                 logger.info(
-                    f'Train loss {train_loss} accuracy {train_acc} f1 {train_f1} precision {train_precision} recall '
-                    f'{train_recall}')
+                    f'Batch size: {bs}, initial learning rate: {lr}, weight decay rates: {wd}, total steps: {total_steps}')
+                logger.info('-' * 100)
 
-                val_precision, val_recall, val_f1, val_acc, val_loss = eval_model(
-                    model,
-                    val_data_loader,
-                    loss_fn,
-                    device,
-                    len(df_val),
-                    is_bfsc
-                )
+                best_val_f1 = -0.1
+                best_epoch = 0
+                t0 = time.time()
 
-                logger.info(
-                    f'Val loss {val_loss} accuracy {val_acc} f1 {val_f1} precision {val_precision} recall {val_recall}')
+                for epoch in range(EPOCHS):  # Training loop
 
-                if val_f1 > best_val_f1:
-                    best_val_f1 = val_f1
-                    best_epoch = epoch + 1
-                    if val_f1 > best_val_f1_overall:
-                        torch.save(model, 'Model/best_model_state.bin')
-                        best_val_f1_overall = best_val_f1
-                        best_epoch_overall = best_epoch
-                        best_bs = bs
-                        best_lr = lr
+                    logger.info(f'Epoch {epoch + 1}/{EPOCHS}')
 
-            val_f1_grid[i, j] = best_val_f1
-            epoch_grid[i, j] = best_epoch
-            t = time.time() - t0
-            t_tot += t
+                    train_precision, train_recall, train_f1, train_acc, train_loss = train_epoch(
+                        model,
+                        train_data_loader,
+                        loss_fn,
+                        optimizer,
+                        device,
+                        scheduler,
+                        len(df_train),
+                        logger,
+                        is_bfsc
+                    )
 
-            logger.info('')
-            logger.info(f'Best validation f1 {best_val_f1} reached at epoch {best_epoch}')
-            logger.info(f'Training time for {EPOCHS} epochs: {t / 60} min')
+                    val_precision, val_recall, val_f1, val_acc, val_loss = eval_model(
+                        model,
+                        val_data_loader,
+                        loss_fn,
+                        device,
+                        len(df_val),
+                        logger,
+                        is_bfsc
+                    )
+
+                    if val_f1 > best_val_f1:
+                        best_val_f1 = val_f1
+                        best_epoch = epoch + 1
+                        if val_f1 > best_val_f1_overall:
+                            torch.save(model, 'Model/best_model_state.bin')
+                            best_val_f1_overall = best_val_f1
+                            best_epoch_overall = best_epoch
+                            best_bs = bs
+                            best_lr = lr
+                            best_wd = wd
+
+                val_f1_grid[i, j, k] = best_val_f1
+                epoch_grid[i, j, k] = best_epoch
+                t = time.time() - t0
+                t_tot += t
+
+                logger.info('')
+                logger.info(f'Best validation f1 {best_val_f1} reached at epoch {best_epoch}')
+                logger.info(f'Training time for {EPOCHS} epochs: {t / 60} min')
 
     logger.info('-' * 100)
     logger.info('Grid search finished')
     logger.info(f'Time consumed: {t_tot / 60} min')
     logger.info(f'Validation f1 values {val_f1_grid} reached at epochs {epoch_grid} respectively')
     logger.info(
-        f'Best parameters: batch size = {best_bs}, learning rate = {best_lr}, training epoch = {best_epoch_overall}')
+        f'Best parameters: batch size = {best_bs}, learning rate = {best_lr}, weight decay rate = {best_wd}, training epoch = {best_epoch_overall}')
 
     # Load best model
     logger.info('')
@@ -592,10 +597,9 @@ if __name__ == '__main__':
         loss_fn,
         device,
         len(df_test),
+        logger,
         is_bfsc
     )
-
-    logger.info(f'Test accuracy {test_acc} f1 {test_f1} precision {test_precision} recall {test_recall}')
 
     # Get predictions for test set
     _ = get_predictions(
@@ -623,22 +627,25 @@ if __name__ == '__main__':
         "Max length": MAX_LEN,
         "Initial learning rates": learning_rates,
         "Batch sizes": batch_sizes,
+        "Weight decay rates": weight_decay_rates,
         "Drop rate": drop_rates if not is_bfsc else None,
         "Xavier initialization": xavier_init if not is_bfsc else None,
         "Hidden layer": hidden_size if not is_bfsc else None,
         "Validation f1 values": val_f1_grid.tolist(),
         "Corresponding epoch numbers": epoch_grid.tolist(),
-        "Best parameters (bs, lr, epoch)": [best_bs, best_lr, best_epoch_overall],
+        "Best parameters (bs, lr, wd, epoch)": [best_bs, best_lr, best_wd, best_epoch_overall],
         "Testing performances (acc, f1, precision, recall)": [test_acc, test_f1, test_precision, test_recall]
     }
 
     with open("Results/exp_record_" + time.strftime("%Y%m%d_%H%M%S") + ".json", "w") as outfile:
         json.dump(exp_record, outfile)
 
-    # Release GPU memory
+    # Clean up: release GPU memory
     logger.info('')
-    logger.info('Releasing GPU memory: ')
+    logger.info('Cleaning up: ')
     del model, train_data_loader, val_data_loader, test_data_loader, loss_fn, optimizer, scheduler
     gc.collect()  # Collect garbage
-    cutorch.empty_cache()
-    logger.info(f'GPU memory occupied: {cutorch.memory_reserved() / 1e9} gb')
+    if torch.cuda.is_available():
+        cutorch.empty_cache()
+        logger.info(f'GPU memory occupied: {cutorch.memory_reserved() / 1e9} gb')
+        # dist.destroy_process_group()
