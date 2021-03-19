@@ -120,13 +120,13 @@ class SentenceClassifier(nn.Module):
         if hidden_size is None:  # No hidden layer
             self.hidden_layer = False
             self.drop = nn.Dropout(p=drop_rates)
-            self.out = nn.Linear(self.bert.config.hidden_size, n_classes)
+            self.embed_to_logits = nn.Linear(self.bert.config.hidden_size, n_classes)
         else:  # Single hidden layer
             self.hidden_layer = True
-            self.drop1 = nn.Dropout(p=drop_rates[0])
-            self.hidden = nn.Linear(self.bert.config.hidden_size, hidden_size)
-            self.drop2 = nn.Dropout(p=drop_rates[1])
-            self.out = nn.Linear(hidden_size, n_classes)
+            self.drop_embed = nn.Dropout(p=drop_rates[0])
+            self.embed_to_hidden = nn.Linear(self.bert.config.hidden_size, hidden_size)
+            self.drop_hidden = nn.Dropout(p=drop_rates[1])
+            self.hidden_to_logits = nn.Linear(hidden_size, n_classes)
 
         if xavier_init:
             nn.init.xavier_uniform_(self.out.weight, gain=1.0)  # Xavier initialization
@@ -138,9 +138,11 @@ class SentenceClassifier(nn.Module):
         )
         pooled_output = model_output[1]
         if self.hidden_layer:
-            return self.out(self.drop2(self.hidden(self.drop1(pooled_output))))
+            hidden_units = F.relu(self.embed_to_hidden(self.drop_embed(pooled_output)))
+            logits = self.hidden_to_logits(self.drop_hidden(hidden_units))
         else:
-            return self.out(self.drop(pooled_output))
+            logits = self.embed_to_logits(self.drop(pooled_output))
+        return logits
 
 
 def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_examples, logger, is_bfsc=False):
@@ -381,7 +383,7 @@ if __name__ == '__main__':
     # os.environ['MASTER_ADDR'] = '127.0.0.1'  # '127.0.0.1' = 'localhost'
     # os.environ['MASTER_PORT'] = '1234'  # a random number
 
-    RANDOM_SEED = 42  # Constants are named all CAPITAL
+    RANDOM_SEED = 42  # Constants are named ALL CAPITAL
     random.seed(RANDOM_SEED)
     np.random.seed(RANDOM_SEED)
     torch.manual_seed(RANDOM_SEED)
@@ -459,7 +461,7 @@ if __name__ == '__main__':
     logger.info('')
     logger.info("Grid search begins: ")
 
-    learning_rates = [7e-6]
+    learning_rates = [1e-5]
     batch_sizes = [32]
     weight_decay_rates = [0.1]
     logger.info(f'Batch sizes: {batch_sizes}')
@@ -506,7 +508,6 @@ if __name__ == '__main__':
 
                 if gpu_count > 1:  # Multiple GPUs
                     model = nn.DataParallel(model)
-                    # model = DDP(model)
                 model = model.to(device)  # Move Model to GPU(s)
 
                 '''
@@ -558,7 +559,7 @@ if __name__ == '__main__':
                         best_val_f1 = val_f1
                         best_epoch = epoch + 1
                         if val_f1 > best_val_f1_overall:
-                            torch.save(model, 'Model/best_model_state.bin')
+                            torch.save(model, 'Model/best_model_state_' + str(dataset) + '.bin')
                             best_val_f1_overall = best_val_f1
                             best_epoch_overall = best_epoch
                             best_bs = bs
@@ -579,12 +580,13 @@ if __name__ == '__main__':
     logger.info(f'Time consumed: {t_tot / 60} min')
     logger.info(f'Validation f1 values {val_f1_grid} reached at epochs {epoch_grid} respectively')
     logger.info(
-        f'Best parameters: batch size = {best_bs}, learning rate = {best_lr}, weight decay rate = {best_wd}, training epoch = {best_epoch_overall}')
+        f'Best parameters: batch size = {best_bs}, learning rate = {best_lr}, weight decay rate = {best_wd}, training '
+        f'epoch = {best_epoch_overall}')
 
     # Load best model
     logger.info('')
     logger.info('Loading best model: ')
-    model = torch.load('Model/best_model_state.bin')
+    model = torch.load('Model/best_model_state_' + str(dataset) + '.bin')
     model.eval()
     model = model.to(device)  # Move Model to GPU
 
