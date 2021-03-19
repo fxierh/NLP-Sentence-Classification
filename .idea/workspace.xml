@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64b71eb5-dd00-4c7a-9620-0588770ef773" name="Default Changelist" comment="" />
+    <list default="true" id="3e8e511f-ad6e-46b0-a5ba-e52ba79e4c98" name="Version 1.0 (m)" comment="Version 1.0 (m)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile stats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestDataPostprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataPostprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestDataPreprocessing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainDataPreprocessing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_v1.py" beforeDir="false" />
+    </list>
+    <list id="64b71eb5-dd00-4c7a-9620-0588770ef773" name="Default Changelist" comment="Version 1.0 (m)" />
     <list id="ddb292b3-15a7-4abe-abf0-dcacae0f41df" name="Revert &quot;Initial version&quot;" comment="Revert &quot;Initial version&quot;&#10;&#10;This reverts commit 01696856" />
-    <list id="184a2eb1-dc5c-4425-b381-53bc4d40829f" name="Uncommitted changes before Checkout at 16/03/2021 13:03 [Default Changelist]" comment="Version 1.0 (c)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,6 +88,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
@@ -416,9 +424,9 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial version" />
     <MESSAGE value="Version 1.0" />
-    <MESSAGE value="Version 1.0 (m)" />
     <MESSAGE value="Version 1.0 (c)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 1.0 (c)" />
+    <MESSAGE value="Version 1.0 (m)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 1.0 (m)" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
