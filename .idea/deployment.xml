@@ -30,6 +30,20 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="mist@gpu48.mistgpu.com:53000">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/mist" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@net.videojj.com:19986">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_215" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="root@net.videojj.com:39170">
         <serverdata>
           <mappings>

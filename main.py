@@ -380,7 +380,11 @@ if __name__ == '__main__':
     is_bfsc = False  # Whether the "BertForSequenceClassification" model is used instead of the plain BERT model
     logger.info(f'"BertForSequenceClassification" model is used instead of the plain BERT model: {is_bfsc}')
 
-    use_amp = True  # Whether to use automatic mixed precision
+    '''
+    The use of automatic mixed precision (AMP) leads to large speed gain on Nvidia datacenter gpus (rich of tensor 
+    cores) like V100/A100, or relatively smaller speed gain on desktop gpus like GeForce RTX 3080/3090.
+    '''
+    use_amp = True
     logger.info(f'Use automatic mixed precision: {use_amp}')
 
     dataset = 1  # 1: type one sentences; 2: type two sentences
