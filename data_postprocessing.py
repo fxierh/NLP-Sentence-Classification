@@ -3,7 +3,7 @@ import pandas as pd
 pd.set_option("display.max_columns", None)
 
 df = pd.read_csv("Results/Test_preds.csv")
-df.drop(columns=['Probabilities'], inplace=True)
+# df.drop(columns=['Probabilities'], inplace=True)
 
 test_sentences_nb = len(df.index)
 
