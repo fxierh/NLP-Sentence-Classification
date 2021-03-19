@@ -18,7 +18,6 @@ import logging
 import os
 import random
 import time
-import warnings
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -32,7 +31,7 @@ from sklearn.metrics import confusion_matrix
 from torch import nn
 from torch.utils.data import Dataset, DataLoader  # Create custom PyTorch dataset and dataloader
 from transformers import BertModel, BertForSequenceClassification, BertTokenizerFast, AdamW, \
-    get_linear_schedule_with_warmup, logging as tlogging
+    get_linear_schedule_with_warmup
 
 from ANSI_color_codes import *
 
@@ -107,7 +106,7 @@ class SentenceClassifier(nn.Module):
     In either case, a dropout layer is applied to BERT's output.
     """
 
-    def __init__(self, n_classes, drop_rates, xavier_init=False, hidden_size=None):
+    def __init__(self, n_classes, drop_rates, xavier_init=False, hidden_size=None, use_amp=True):
         super(SentenceClassifier, self).__init__()
 
         '''
@@ -116,6 +115,7 @@ class SentenceClassifier(nn.Module):
         bert_model.save_pretrained('./Model/')
         '''
         self.bert = BertModel.from_pretrained('./Model/')
+        self.use_amp = use_amp
 
         if hidden_size is None:  # No hidden layer
             self.hidden_layer = False
@@ -132,20 +132,22 @@ class SentenceClassifier(nn.Module):
             nn.init.xavier_uniform_(self.out.weight, gain=1.0)  # Xavier initialization
 
     def forward(self, input_ids, attention_mask):
-        model_output = self.bert(
-            input_ids=input_ids,
-            attention_mask=attention_mask
-        )
-        pooled_output = model_output[1]
-        if self.hidden_layer:
-            hidden_units = F.relu(self.embed_to_hidden(self.drop_embed(pooled_output)))
-            logits = self.hidden_to_logits(self.drop_hidden(hidden_units))
-        else:
-            logits = self.embed_to_logits(self.drop(pooled_output))
-        return logits
+        with cutorch.amp.autocast(enabled=self.use_amp):
+            model_output = self.bert(
+                input_ids=input_ids,
+                attention_mask=attention_mask
+            )
+            pooled_output = model_output[1]
+            if self.hidden_layer:
+                hidden_units = F.relu(self.embed_to_hidden(self.drop_embed(pooled_output)))
+                logits = self.hidden_to_logits(self.drop_hidden(hidden_units))
+            else:
+                logits = self.embed_to_logits(self.drop(pooled_output))
+            return logits
 
 
-def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_examples, logger, is_bfsc=False):
+def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_examples, logger, scaler, is_bfsc=False,
+                use_amp=True):
     """
     Models one training epoch (forward prop + back prop).
     :param model: instance of the class "SentenceClassifier" when is_bfsc=False, instance of "BertForSequenceClassification" otherwise.
@@ -155,7 +157,9 @@ def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_exa
     :param device:
     :param scheduler: scheduler which updates the learning rate.
     :param n_examples: number of training examples.
+    :param scaler:
     :param is_bfsc: True if "BertForSequenceClassification" provides the model.
+    :param use_amp: whether to use automatic mixed precision or not.
     :return: training precision, recall, f1 score, accuracy, loss per training example.
     """
 
@@ -171,20 +175,21 @@ def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_exa
         targets = d["is_type"].to(device)
 
         # Forward prop
-        if is_bfsc:
-            outputs = model(
-                input_ids=input_ids,
-                attention_mask=attention_mask,
-                labels=targets
-            )
-            loss = outputs[0]
-            outputs = outputs[1]
-        else:
-            outputs = model(
-                input_ids=input_ids,
-                attention_mask=attention_mask
-            )
-            loss = loss_fn(outputs, targets)
+        with cutorch.amp.autocast(enabled=use_amp):
+            if is_bfsc:
+                outputs = model(
+                    input_ids=input_ids,
+                    attention_mask=attention_mask,
+                    labels=targets
+                )
+                loss = outputs[0]
+                outputs = outputs[1]
+            else:
+                outputs = model(
+                    input_ids=input_ids,
+                    attention_mask=attention_mask
+                )
+                loss = loss_fn(outputs, targets)
 
         _, preds = torch.max(outputs, dim=1)  # preds.get_device()?
         tot_loss += loss.item()  # The item() method extracts the loss's value as a Python float
@@ -198,9 +203,19 @@ def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_exa
         tp_tot += tp
 
         # Back prop
-        loss.backward()  # Computes dloss/dx for every parameter x which has requires_grad=True. Then x.grad += dloss/dx
+        '''
+        Computes dloss/dx for every parameter x which has requires_grad=True. Then x.grad += dloss/dx.
+        Use loss.backward() without gradient scaling.
+        '''
+        scaler.scale(loss).backward()
+        scaler.unscale_(optimizer)
         nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-        optimizer.step()  # Updates the value of x using the gradient x.grad. x += -lr * x.grad
+        '''
+        Updates the value of x using the gradient x.grad. x += -lr * x.grad, use optimizer.step() without gradient 
+        scaling.
+        '''
+        scaler.step(optimizer)
+        scaler.update()  # Updates the scale for next iteration/batch.
         scheduler.step()  # Update the learning rate
         optimizer.zero_grad()  # Clears x.grad for every parameter x
 
@@ -217,7 +232,7 @@ def train_epoch(model, data_loader, loss_fn, optimizer, device, scheduler, n_exa
     return precision, recall, f1, acc, ave_loss
 
 
-def eval_model(model, data_loader, loss_fn, device, n_examples, logger, is_bfsc=False):
+def eval_model(model, data_loader, loss_fn, device, n_examples, logger, is_bfsc=False, use_amp=True):
     """
     Evaluation of model performance (forward prop) on validation/testing dataset.
     :param model: instance of the class "SentenceClassifier" when is_bfsc=False, instance of "BertForSequenceClassification" otherwise.
@@ -226,6 +241,7 @@ def eval_model(model, data_loader, loss_fn, device, n_examples, logger, is_bfsc=
     :param device:
     :param n_examples: number of validation/testing examples.
     :param is_bfsc: True if "BertForSequenceClassification" provides the model.
+    :param use_amp: whether to use automatic mixed precision or not.
     :return: validation/testing precision, recall, f1 score, accuracy, loss per validation/testing example.
     """
 
@@ -241,20 +257,21 @@ def eval_model(model, data_loader, loss_fn, device, n_examples, logger, is_bfsc=
             targets = d["is_type"].to(device)
 
             # Forward prop
-            if is_bfsc:
-                outputs = model(
-                    input_ids=input_ids,
-                    attention_mask=attention_mask,
-                    labels=targets
-                )
-                loss = outputs[0]
-                outputs = outputs[1]
-            else:
-                outputs = model(
-                    input_ids=input_ids,
-                    attention_mask=attention_mask
-                )
-                loss = loss_fn(outputs, targets)
+            with cutorch.amp.autocast(enabled=use_amp):
+                if is_bfsc:
+                    outputs = model(
+                        input_ids=input_ids,
+                        attention_mask=attention_mask,
+                        labels=targets
+                    )
+                    loss = outputs[0]
+                    outputs = outputs[1]
+                else:
+                    outputs = model(
+                        input_ids=input_ids,
+                        attention_mask=attention_mask
+                    )
+                    loss = loss_fn(outputs, targets)
 
             tot_loss += loss.item()
             _, preds = torch.max(outputs, dim=1)
@@ -280,7 +297,7 @@ def eval_model(model, data_loader, loss_fn, device, n_examples, logger, is_bfsc=
     return precision, recall, f1, acc, ave_loss
 
 
-def get_predictions(model, data_loader, device, save_preds_as_csv=True, is_bfsc=False):
+def get_predictions(model, data_loader, device, save_preds_as_csv=True, is_bfsc=False, use_amp=True):
     """
     Generate predictions with model.
     :param model: instance of the class "SentenceClassifier" when is_bfsc=False, of "BertForSequenceClassification" otherwise.
@@ -305,17 +322,18 @@ def get_predictions(model, data_loader, device, save_preds_as_csv=True, is_bfsc=
             attention_mask = d["attention_mask"].to(device)
             targets = d["is_type"].to(device)
 
-            if is_bfsc:
-                outputs = model(
-                    input_ids=input_ids,
-                    attention_mask=attention_mask,
-                    labels=targets
-                )[1]
-            else:
-                outputs = model(
-                    input_ids=input_ids,
-                    attention_mask=attention_mask
-                )
+            with cutorch.amp.autocast(enabled=use_amp):
+                if is_bfsc:
+                    outputs = model(
+                        input_ids=input_ids,
+                        attention_mask=attention_mask,
+                        labels=targets
+                    )[1]
+                else:
+                    outputs = model(
+                        input_ids=input_ids,
+                        attention_mask=attention_mask
+                    )
 
             _, preds = torch.max(outputs, dim=1)
             probs = F.softmax(outputs, dim=1)
@@ -362,11 +380,14 @@ if __name__ == '__main__':
     is_bfsc = False  # Whether the "BertForSequenceClassification" model is used instead of the plain BERT model
     logger.info(f'"BertForSequenceClassification" model is used instead of the plain BERT model: {is_bfsc}')
 
+    use_amp = True  # Whether to use automatic mixed precision
+    logger.info(f'Use automatic mixed precision: {use_amp}')
+
     dataset = 1  # 1: type one sentences; 2: type two sentences
     logger.info(f'Dataset: type {dataset} sentences')
 
-    warnings.filterwarnings("ignore")  # Ignore Python warnings to suppress invalid value warnings
-    tlogging.set_verbosity_error()  # Transformers: Set the verbosity to the ERROR level to suppress warnings
+    # warnings.filterwarnings("ignore")  # Ignore Python warnings to suppress invalid value warnings
+    # tlogging.set_verbosity_error()  # Transformers: Set the verbosity to the ERROR level to suppress warnings
 
     os.environ["TOKENIZERS_PARALLELISM"] = "true"  # Avoid warning messages caused by multiprocessing (dataloader)
     logger.info(f'Tokenizer parallelization: {os.environ["TOKENIZERS_PARALLELISM"]}')
@@ -487,6 +508,12 @@ if __name__ == '__main__':
             for k, wd in enumerate(weight_decay_rates):
 
                 '''
+                "Gradient scaling helps prevent gradients with small magnitudes from flushing to zero (
+                “underflowing”) when training with mixed precision." 
+                '''
+                scaler = cutorch.amp.GradScaler(enabled=use_amp)
+
+                '''
                 Custom dataset and dataloader.
                 Dataloader (an iterable): load a batch of data each iteration
                 '''
@@ -504,7 +531,7 @@ if __name__ == '__main__':
                     )
                 else:
                     model = SentenceClassifier(n_classes=2, drop_rates=drop_rates, xavier_init=xavier_init,
-                                               hidden_size=hidden_size)
+                                               hidden_size=hidden_size, use_amp=use_amp)
 
                 if gpu_count > 1:  # Multiple GPUs
                     model = nn.DataParallel(model)
@@ -542,7 +569,9 @@ if __name__ == '__main__':
                         scheduler,
                         len(df_train),
                         logger,
-                        is_bfsc
+                        scaler,
+                        is_bfsc,
+                        use_amp
                     )
 
                     val_precision, val_recall, val_f1, val_acc, val_loss = eval_model(
@@ -552,7 +581,8 @@ if __name__ == '__main__':
                         device,
                         len(df_val),
                         logger,
-                        is_bfsc
+                        is_bfsc,
+                        use_amp
                     )
 
                     if val_f1 > best_val_f1:
@@ -609,7 +639,8 @@ if __name__ == '__main__':
         test_data_loader,
         device,
         save_preds_as_csv=True,
-        is_bfsc=is_bfsc
+        is_bfsc=is_bfsc,
+        use_amp=use_amp
     )
 
     # Save experiment record to .json file
@@ -645,7 +676,7 @@ if __name__ == '__main__':
     # Clean up: release GPU memory
     logger.info('')
     logger.info('Cleaning up: ')
-    del model, train_data_loader, val_data_loader, test_data_loader, loss_fn, optimizer, scheduler
+    del model, train_data_loader, val_data_loader, test_data_loader, loss_fn, optimizer, scheduler, scaler
     gc.collect()  # Collect garbage
     if torch.cuda.is_available():
         cutorch.empty_cache()
