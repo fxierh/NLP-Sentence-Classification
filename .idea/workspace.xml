@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e8e511f-ad6e-46b0-a5ba-e52ba79e4c98" name="Version 1.0 (m)" comment="Version 1.0 (m)">
+      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_171348.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_172352.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_172649.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_173559.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_173850.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_182020.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_182556.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_183433.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_183828.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/SentenceClassification.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SentenceClassification.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/Test_preds.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Test_preds.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -282,7 +291,8 @@
       <workItem from="1616246566068" duration="704000" />
       <workItem from="1616247276246" duration="92000" />
       <workItem from="1616247372897" duration="7244000" />
-      <workItem from="1616255964440" duration="9390000" />
+      <workItem from="1616255964440" duration="14293000" />
+      <workItem from="1616322036560" duration="1857000" />
     </task>
     <task id="LOCAL-00001" summary="Initial version">
       <created>1615463955614</created>
@@ -403,7 +413,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616259619701</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Version 1.0 (m)">
+      <created>1616315591152</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1616315591152</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,7 +472,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SentenceClassification$TrainDataPreprocessing.coverage" NAME="TrainDataPreprocessing Coverage Results" MODIFIED="1612755995528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$DataPostprocessing.coverage" NAME="data_postprocessing Coverage Results" MODIFIED="1616169861027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SentenceClassification$main.coverage" NAME="main Coverage Results" MODIFIED="1616308911429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SentenceClassification$main.coverage" NAME="main Coverage Results" MODIFIED="1616322984057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$Try2.coverage" NAME="Try2 Coverage Results" MODIFIED="1612431879659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$TestDataPostprocessing.coverage" NAME="TestDataPostprocessing Coverage Results" MODIFIED="1612538257254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SentenceClassification$LoadDataset.coverage" NAME="DataPreprocessing Coverage Results" MODIFIED="1612257999040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
