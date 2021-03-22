@@ -1,6 +1,12 @@
-import pandas as pd
+import re
 
-df = pd.read_csv("./Datasets/Test_orig.tsv", sep='\t')[0:100]
-df_2 = pd.read_csv("./Datasets/Test_orig.tsv", sep='\t')[100:200]
+paragraph = u'\u70ed\u5e26\u98ce\u66b4\u5c1a\u5854\u5c14\u662f2001\u5e74\u5927\u897f\u6d0b\u98d3\u98ce\u5b63\u7684\u4e00\u573a\u57288\u6708\u7a7f\u8d8a\u4e86\u52a0\u52d2\u6bd4\u6d77\u7684\u5317\u5927\u897f\u6d0b\u70ed\u5e26\u6c14\u65cb\u3002\u5c1a\u5854\u5c14\u4e8e8\u670814\u65e5\u7531\u70ed\u5e26\u5927\u897f\u6d0b\u7684\u4e00\u80a1\u4e1c\u98ce\u6ce2\u53d1\u5c55\u800c\u6210\uff0c\u5176\u5b58\u5728\u7684\u5927\u90e8\u5206\u65f6\u95f4\u91cc\u90fd\u5728\u5feb\u901f\u5411\u897f\u79fb\u52a8\uff0c\u9000\u5316\u6210\u4e1c\u98ce\u6ce2\u540e\u7a7f\u8d8a\u4e86\u5411\u98ce\u7fa4\u5c9b\u3002'
+print(paragraph)
 
-print(df + df_2)
+
+def zng(paragraph):
+    for sent in re.findall(u'[^!?。]+[!?。]?', paragraph, flags=re.U):
+        yield sent
+
+
+print(list(zng(paragraph)))

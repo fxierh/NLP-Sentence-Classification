@@ -1,0 +1,34 @@
+CST 2021-03-22 23:08:13.270 - root - main.py - line 383 - INFO - Initializing:
+CST 2021-03-22 23:08:13.270 - root - main.py - line 386 - INFO - Code being tested: True
+CST 2021-03-22 23:08:13.270 - root - main.py - line 389 - INFO - "BertForSequenceClassification" model is used instead of the plain BERT model: False
+CST 2021-03-22 23:08:13.270 - root - main.py - line 396 - INFO - Use automatic mixed precision: False
+CST 2021-03-22 23:08:13.270 - root - main.py - line 399 - INFO - Dataset: type 2 sentences
+CST 2021-03-22 23:08:13.270 - root - main.py - line 405 - INFO - Tokenizer parallelization: true
+CST 2021-03-22 23:08:17.474 - root - main.py - line 408 - INFO - CPU: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+CST 2021-03-22 23:08:17.475 - root - main.py - line 413 - INFO - Device count: 0
+CST 2021-03-22 23:08:17.475 - root - main.py - line 415 - INFO - Device name(s): cpu
+CST 2021-03-22 23:08:17.477 - root - main.py - line 424 - INFO - Random seed: 42
+CST 2021-03-22 23:08:17.581 - root - main.py - line 437 - INFO - Number of epochs: 2
+CST 2021-03-22 23:08:17.581 - root - main.py - line 440 - INFO - 
+CST 2021-03-22 23:08:17.581 - root - main.py - line 441 - INFO - Loading datasets:
+CST 2021-03-22 23:08:17.644 - root - main.py - line 460 - INFO - Number of sentences used for training/validation/testing: 10/10/10
+CST 2021-03-22 23:08:17.650 - root - main.py - line 465 - INFO - Type 2 sentence ratio in train/val/test set: 0.1/0.5/0.1
+CST 2021-03-22 23:08:17.650 - root - main.py - line 491 - INFO - Max length = 256
+CST 2021-03-22 23:08:17.651 - root - main.py - line 494 - INFO - 
+CST 2021-03-22 23:08:17.651 - root - main.py - line 495 - INFO - Grid search begins: 
+CST 2021-03-22 23:08:17.651 - root - main.py - line 500 - INFO - Batch sizes: [64]
+CST 2021-03-22 23:08:17.651 - root - main.py - line 501 - INFO - Initial learning rates: [1e-05]
+CST 2021-03-22 23:08:17.651 - root - main.py - line 502 - INFO - Weight decay: [0.1]
+CST 2021-03-22 23:08:17.652 - root - main.py - line 505 - INFO - Xavier initialization: False
+CST 2021-03-22 23:08:17.652 - root - main.py - line 507 - INFO - Drop rates: 0.3
+CST 2021-03-22 23:08:17.652 - root - main.py - line 509 - INFO - Hidden layer: None
+CST 2021-03-22 23:08:17.653 - root - main.py - line 95 - DEBUG - Dataloader: shuffle=True
+CST 2021-03-22 23:08:17.653 - root - main.py - line 95 - DEBUG - Dataloader: shuffle=True
+CST 2021-03-22 23:08:19.027 - root - main.py - line 562 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-22 23:08:19.027 - root - main.py - line 563 - INFO - Batch size: 64, initial learning rate: 1e-05, weight decay rates: 0.1, total steps: 2
+CST 2021-03-22 23:08:19.028 - root - main.py - line 565 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-22 23:08:19.028 - root - main.py - line 573 - INFO - Epoch 1/2
+CST 2021-03-22 23:08:51.188 - root - main.py - line 235 - INFO - Train loss (ave) 0.6365066170692444 accuracy 0.7 f1 0.4 precision 0.25 recall 1.0
+CST 2021-03-22 23:09:12.825 - root - main.py - line 302 - INFO - Eval loss (ave) 0.8643680810928345 accuracy 0.5 f1 0 precision nan recall 0.0
+CST 2021-03-22 23:09:13.226 - root - main.py - line 573 - INFO - Epoch 2/2
+CST 2021-03-22 23:09:46.758 - root - main.py - line 235 - INFO - Train loss (ave) 0.41758638620376587 accuracy 0.9 f1 0 precision nan recall 0.0
