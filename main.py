@@ -380,7 +380,7 @@ if __name__ == '__main__':
 
     logger.info('Initializing:')
 
-    code_testing = True  # Whether we are testing the code
+    code_testing = False  # Whether we are testing the code
     logger.info(f'Code being tested: {code_testing}')
 
     use_bfsc = False  # Whether the "BertForSequenceClassification" model is used instead of the plain BERT model
