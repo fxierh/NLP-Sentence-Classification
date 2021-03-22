@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e8e511f-ad6e-46b0-a5ba-e52ba79e4c98" name="Version 1.0 (m)" comment="Version 1.0 (m)">
-      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_171348.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_172352.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_172649.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_173559.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_173850.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_182020.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_182556.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_183433.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/exp_record_20210321_183828.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SentenceClassification.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SentenceClassification.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/Test_preds.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Test_preds.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -292,7 +280,7 @@
       <workItem from="1616247276246" duration="92000" />
       <workItem from="1616247372897" duration="7244000" />
       <workItem from="1616255964440" duration="14293000" />
-      <workItem from="1616322036560" duration="1857000" />
+      <workItem from="1616322036560" duration="3742000" />
     </task>
     <task id="LOCAL-00001" summary="Initial version">
       <created>1615463955614</created>
@@ -420,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616315591152</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Loss calculation error corrected.">
+      <created>1616326034052</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1616326034052</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +459,8 @@
     <MESSAGE value="Version 1.0" />
     <MESSAGE value="Version 1.0 (c)" />
     <MESSAGE value="Version 1.0 (m)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 1.0 (m)" />
+    <MESSAGE value="Loss calculation error corrected." />
+    <option name="LAST_COMMIT_MESSAGE" value="Loss calculation error corrected." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
