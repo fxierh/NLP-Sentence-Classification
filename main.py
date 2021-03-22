@@ -2,7 +2,9 @@
 Sentence classification project, internship at National Science Library，Chinese Academy of Sciences.
 main.py: training & testing of the model.
          Adapted from: https://curiousily.com/posts/sentiment-analysis-with-bert-and-hugging-face-using-pytorch-and-python/
-Author: Feilian Xie <fxie49@gatech.edu>
+Author: Feilian Xie <feilian1000@126.com>
+TODO:
+    Add date.
 """
 
 # Uncomment the following to run as a jupyter notebook
@@ -107,7 +109,7 @@ class SentenceClassifier(nn.Module):
     In either case, a dropout layer is applied to BERT's output.
     """
 
-    def __init__(self, n_classes, drop_rates, xavier_init=False, hidden_size=None, use_amp=True):
+    def __init__(self, n_classes=2, drop_rates=0.3, xavier_init=False, hidden_size=None, use_amp=True):
         super(SentenceClassifier, self).__init__()
 
         '''
@@ -380,7 +382,7 @@ if __name__ == '__main__':
 
     logger.info('Initializing:')
 
-    code_testing = False  # Whether we are testing the code
+    code_testing = True  # Whether we are testing the code
     logger.info(f'Code being tested: {code_testing}')
 
     use_bfsc = False  # Whether the "BertForSequenceClassification" model is used instead of the plain BERT model
@@ -393,7 +395,7 @@ if __name__ == '__main__':
     use_amp = True if torch.cuda.is_available() else False
     logger.info(f'Use automatic mixed precision: {use_amp}')
 
-    dataset = 1  # 1: type one sentences; 2: type two sentences
+    dataset = 2  # 1: type one sentences; 2: type two sentences
     logger.info(f'Dataset: type {dataset} sentences')
 
     warnings.filterwarnings("ignore")  # Ignore Python warnings to suppress invalid value warnings
@@ -493,7 +495,7 @@ if __name__ == '__main__':
     logger.info("Grid search begins: ")
 
     learning_rates = [1e-5]
-    batch_sizes = [32]
+    batch_sizes = [64]
     weight_decay_rates = [0.1]
     logger.info(f'Batch sizes: {batch_sizes}')
     logger.info(f'Initial learning rates: {learning_rates}')
@@ -599,7 +601,10 @@ if __name__ == '__main__':
                         best_val_f1 = val_f1
                         best_epoch = epoch + 1
                         if val_f1 > best_val_f1_overall:
-                            torch.save(model, 'Model/best_model_state_' + str(dataset) + '.bin')
+                            if gpu_count > 1:
+                                torch.save(model.module.state_dict(), 'Model/best_model_state_' + str(dataset) + '.pt')
+                            else:
+                                torch.save(model.state_dict(), 'Model/best_model_state_' + str(dataset) + '.pt')
                             best_val_f1_overall = best_val_f1
                             best_epoch_overall = best_epoch
                             best_bs = bs
@@ -626,8 +631,8 @@ if __name__ == '__main__':
     # Load best model
     logger.info('')
     logger.info('Loading best model: ')
-    model = torch.load('Model/best_model_state_' + str(dataset) + '.bin')
-    model.eval()
+    model = SentenceClassifier()
+    model.load_state_dict(torch.load('Model/best_model_state_' + str(dataset) + '.pt', map_location=device))
     model = model.to(device)  # Move Model to GPU
 
     # Test Model performance on testing set
