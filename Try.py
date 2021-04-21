@@ -1,34 +1,12 @@
-import logging
-import time
+import re
 
-from ANSI_color_codes import *
+paragraph = u'\u70ed\u5e26\u98ce\u66b4\u5c1a\u5854\u5c14\u662f2001\u5e74\u5927\u897f\u6d0b\u98d3\u98ce\u5b63\u7684\u4e00\u573a\u57288\u6708\u7a7f\u8d8a\u4e86\u52a0\u52d2\u6bd4\u6d77\u7684\u5317\u5927\u897f\u6d0b\u70ed\u5e26\u6c14\u65cb\u3002\u5c1a\u5854\u5c14\u4e8e8\u670814\u65e5\u7531\u70ed\u5e26\u5927\u897f\u6d0b\u7684\u4e00\u80a1\u4e1c\u98ce\u6ce2\u53d1\u5c55\u800c\u6210\uff0c\u5176\u5b58\u5728\u7684\u5927\u90e8\u5206\u65f6\u95f4\u91cc\u90fd\u5728\u5feb\u901f\u5411\u897f\u79fb\u52a8\uff0c\u9000\u5316\u6210\u4e1c\u98ce\u6ce2\u540e\u7a7f\u8d8a\u4e86\u5411\u98ce\u7fa4\u5c9b\u3002'
+print(paragraph)
 
-# Create and configure logger
-# noinspection PyArgumentList
-# logging.basicConfig(
-#     level=logging.DEBUG,  # Also possible: logger.setLevel(logging.DEBUG)
-#     format=CYAN + BOLD + '%(asctime)s - %(name)s - %(filename)s - %(lineno)s - %(levelname)s - %(message)s' + RESET,
-#     handlers=[logging.StreamHandler(),
-#               logging.FileHandler(time.strftime("%Y%m%d_%H%M%S") + ".log")
-#               ]  # Also possible: logger.addHandler(logging.StreamHandler())
-# )
 
-logging.basicConfig(
-    filename="./Logging/" + time.strftime("%Y%m%d_%H%M%S") + ".log",
-    level=logging.DEBUG,
-    format='%(asctime)s.%(msecs)03d - %(name)s - %(filename)s - line %(lineno)s - %(levelname)s - %(message)s',
-    datefmt="%Z %Y-%m-%d %H:%M:%S"  # Time zone yyyy-MM-dd HH:mm:ss.SSS
-)
-logger = logging.getLogger()
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.INFO)
-console_handler.setFormatter(logging.Formatter(OKBLUE + '%(asctime)s - %(message)s' + RESET, "%H:%M:%S"))
-logger.addHandler(console_handler)
+def zng(paragraph):
+    for sent in re.findall(u'[^!?。]+[!?。]?', paragraph, flags=re.U):
+        yield sent
 
-# Test messages
-logger.debug("Harmless debug Message")
-logger.info("Just an information")
-logger.warning("Its a Warning")
-logger.error("Did you try to divide by zero")
-logger.critical("Internet is down")
-logger.debug("Harmless debug Message")
+
+print(list(zng(paragraph)))

@@ -1,30 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="MistGPU" createEmptyFolders="true" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" createEmptyFolders="true" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="MistGPU">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-          <excludedPaths>
-            <excludedPath local="true" path="$PROJECT_DIR$/Model/best_model_state.bin" />
-            <excludedPath local="true" path="$PROJECT_DIR$/Datasets/Test_orig.tsv" />
-            <excludedPath local="true" path="$PROJECT_DIR$/Datasets/Test.csv" />
-            <excludedPath local="true" path="$PROJECT_DIR$/Datasets/Train_orig.csv" />
-            <excludedPath local="true" path="$PROJECT_DIR$/Datasets/Train.csv" />
-          </excludedPaths>
-        </serverdata>
-      </paths>
-      <paths name="mist@gpu110.mistgpu.xyz:31240 password">
+      <paths name="mist@gpu180.mistgpu.xyz:20201">
         <serverdata>
           <mappings>
             <mapping deploy="/home/mist" local="$PROJECT_DIR$" />
           </mappings>
-          <excludedPaths>
-            <excludedPath local="true" path="$PROJECT_DIR$/Datasets/Test_orig.tsv" />
-            <excludedPath local="true" path="$PROJECT_DIR$/Datasets/Test.csv" />
-          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="mist@gpu180.mistgpu.xyz:20800">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/mist" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="mist@gpu22.mistgpu.xyz:33000">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/mist" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="mist@gpu25.mistgpu.xyz:10030">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/mist" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="mist@gpu48.mistgpu.com:53000">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/mist" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@net.videojj.com:19986">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_215" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@net.videojj.com:39170">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_313" local="$PROJECT_DIR$" />
+          </mappings>
         </serverdata>
       </paths>
     </serverData>
