@@ -1,36 +1,61 @@
-# Sentence Classification Project
+# Sentence Classification
 
-**dd**
+This project aims to classify sentences in the abstract of scientific papers in Chinese. Two bert-based models are
+trained separately for two binary classification tasks:
 
-~~dd~~
+1. Identify each sentence as research topic sentence or not.
+2. Identify each sentence as research method sentence or not.
 
-_dd_
+Context: six-month internship at National Science Library, Chinese Academy of Science
 
-|Name|Email|Address|      
-|----|-----|-------|      
-|John|john@example.com|Address1| 
+Intern: Feilian Xie
 
-[Google](https://www.google.com  "Google browser")
+Email: feilian1000@126.com
 
-> Quotes
+[comment]: <> (**dd**)
 
-`Method1() ` method that ...
+[comment]: <> (~~dd~~)
 
-```angular2html
-Code block
-```
+[comment]: <> (_dd_)
 
-1. Item 1
-2. Item 2
-3. Item 3
-    * Sub item 1
-    * Sub item 3
+[comment]: <> (|Name|Email|Address|      )
 
-* Unordered item
-* Unordered item
-* Unordered item
+[comment]: <> (|----|-----|-------|      )
 
-Sample text
-***
-Sample text
----
+[comment]: <> (|John|john@example.com|Address1| )
+
+[comment]: <> ([Google]&#40;https://www.google.com  "Google browser"&#41;)
+
+[comment]: <> (> Quotes)
+
+[comment]: <> (`Method1&#40;&#41; ` method that ...)
+
+[comment]: <> (```angular2html)
+
+[comment]: <> (Code block)
+
+[comment]: <> (```)
+
+[comment]: <> (1. Item 1)
+
+[comment]: <> (2. Item 2)
+
+[comment]: <> (3. Item 3)
+
+[comment]: <> (    * Sub item 1)
+
+[comment]: <> (    * Sub item 3)
+
+[comment]: <> (* Unordered item)
+
+[comment]: <> (* Unordered item)
+
+[comment]: <> (* Unordered item)
+
+[comment]: <> (Sample text)
+
+[comment]: <> (***)
+
+[comment]: <> (Sample text)
+
+[comment]: <> (---)
