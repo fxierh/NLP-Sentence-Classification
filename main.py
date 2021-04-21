@@ -3,8 +3,6 @@ Sentence classification project, internship at National Science Library，Chines
 main.py: training & testing of the model.
          Adapted from: https://curiousily.com/posts/sentiment-analysis-with-bert-and-hugging-face-using-pytorch-and-python/
 Author: Feilian Xie <feilian1000@126.com>
-TODO:
-    Add date.
 """
 
 # Uncomment the following to run as a jupyter notebook
@@ -21,6 +19,7 @@ import os
 import random
 import time
 import warnings
+from statistics import mean
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -72,17 +71,18 @@ class CustomDataset(Dataset):
             'sentence': sentence,
             'input_ids': encoding['input_ids'].flatten(),
             'attention_mask': encoding['attention_mask'].flatten(),
-            'is_type': torch.tensor(is_type, dtype=torch.long)
+            'is_type': torch.tensor(is_type, dtype=torch.long)  # TODO: change data type
         }
 
 
-def create_data_loader(df, tokenizer, max_len, batch_size):
+def create_data_loader(df, tokenizer, max_len, batch_size, shuffle=True):
     """
     Create a customized PyTorch dataloader (which combines a dataset and a sampler, and provides an iterable over the given dataset.)
     :param df: pandas dataframe.
     :param tokenizer: BERT tokenizer (huggingface).
     :param max_len: maximum input length of the tokenizer.
     :param batch_size: number of data instances loaded at a time.
+    :param shuffle:
     :return: a customized PyTorch dataloader.
     """
 
@@ -92,11 +92,10 @@ def create_data_loader(df, tokenizer, max_len, batch_size):
         tokenizer=tokenizer,
         max_len=max_len
     )
-    logger.debug("Dataloader: shuffle=True")
 
     return DataLoader(
         ds,
-        shuffle=True,
+        shuffle=shuffle,
         batch_size=batch_size,
         num_workers=4
     )
@@ -115,9 +114,9 @@ class SentenceClassifier(nn.Module):
         '''
         # Uncomment the triple single quote and comment the following line when running the script for the first time.
         self.bert = BertModel.from_pretrained(PRE_TRAINED_MODEL_NAME)
-        bert_model.save_pretrained('./Model/')
+        self.bert.save_pretrained('./Model/')
         '''
-        self.bert = BertModel.from_pretrained('./Model/')
+        self.bert = BertModel.from_pretrained('./Model/', hidden_dropout_prob=0.1)
         self.use_amp = use_amp
 
         if hidden_size is None:  # No hidden layer
@@ -149,6 +148,10 @@ class SentenceClassifier(nn.Module):
             return logits
 
 
+# TODO:
+#  1) Use args as input attributes
+#  2) Enable gradient accumulation
+#  3) Add function annotations
 def train_epoch(model, data_loader, loss_fn, optimizer, device, num_instances, scheduler, logger, scaler,
                 use_bfsc=False, use_amp=True):
     """
@@ -187,7 +190,7 @@ def train_epoch(model, data_loader, loss_fn, optimizer, device, num_instances, s
                     attention_mask=attention_mask,
                     labels=targets
                 )
-                loss = outputs[0]  # "CrossEntropyLoss"
+                loss = outputs[0]  # "CrossEntropyLoss" (mean)
                 outputs = outputs[1]  # logits
             else:
                 outputs = model(
@@ -197,7 +200,9 @@ def train_epoch(model, data_loader, loss_fn, optimizer, device, num_instances, s
                 loss = loss_fn(outputs, targets)
 
         _, preds = torch.max(outputs, dim=1)  # preds.get_device()?
-        tot_loss += loss.item() * num_instance_batch  # The item() method extracts the loss's value as a Python float
+        # The item() method extracts the loss's value as a Python float.
+        # The loss needs to be normalized by dividing the number of gradient accumulation steps if applicable
+        tot_loss += loss.item() * num_instance_batch
 
         targets = targets.cpu()
         preds = preds.cpu()
@@ -210,14 +215,15 @@ def train_epoch(model, data_loader, loss_fn, optimizer, device, num_instances, s
         # Back prop
         '''
         Computes dloss/dx for every parameter x which has requires_grad=True. Then x.grad += dloss/dx.
-        Use loss.backward() without gradient scaling.
+        Use loss.backward() without gradient scaling (required when AMP is used).
         '''
         scaler.scale(loss).backward()
         scaler.unscale_(optimizer)
+        # Gradient scaling, all grads are concatenated into a single vector. Use clip_grad_value for gradient clipping.
         nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
         '''
         Updates the value of x using the gradient x.grad. x += -lr * x.grad, use optimizer.step() without gradient 
-        scaling.
+        scaling. Optimizer.step() must be called before scheduler.step().
         '''
         scaler.step(optimizer)
         scaler.update()  # Updates the scale for next iteration/batch.
@@ -280,8 +286,8 @@ def eval_model(model, data_loader, loss_fn, device, num_instances, logger, use_b
                     )
                     loss = loss_fn(outputs, targets)
 
-            tot_loss += loss.item() * num_instance_batch
             _, preds = torch.max(outputs, dim=1)
+            tot_loss += loss.item() * num_instance_batch
 
             targets = targets.cpu()
             preds = preds.cpu()
@@ -382,7 +388,7 @@ if __name__ == '__main__':
 
     logger.info('Initializing:')
 
-    code_testing = True  # Whether we are testing the code
+    code_testing = False  # Whether we are testing the code
     logger.info(f'Code being tested: {code_testing}')
 
     use_bfsc = False  # Whether the "BertForSequenceClassification" model is used instead of the plain BERT model
@@ -394,6 +400,9 @@ if __name__ == '__main__':
     '''
     use_amp = True if torch.cuda.is_available() else False
     logger.info(f'Use automatic mixed precision: {use_amp}')
+
+    plot_input_len_dist = False  # True if plot distribution of training sequence (token) lengths
+    logger.info(f'Plot token length distribution of input: {plot_input_len_dist}')
 
     dataset = 2  # 1: type one sentences; 2: type two sentences
     logger.info(f'Dataset: type {dataset} sentences')
@@ -413,9 +422,10 @@ if __name__ == '__main__':
     logger.info(f"Device count: {gpu_count}")
     device_names = [torch.cuda.get_device_name(i) for i in range(gpu_count)] if torch.cuda.is_available() else 'cpu'
     logger.info(f"Device name(s): {device_names}")
-    # os.environ['MASTER_ADDR'] = '127.0.0.1'  # '127.0.0.1' = 'localhost'
-    # os.environ['MASTER_PORT'] = '1234'  # a random number
+    eval_batch_size = 64
+    logger.info(f'Batch size for evaluation: {eval_batch_size}')
 
+    # TODO: define a function for seeding
     RANDOM_SEED = 42  # Constants are named ALL CAPITAL
     random.seed(RANDOM_SEED)
     np.random.seed(RANDOM_SEED)
@@ -441,11 +451,13 @@ if __name__ == '__main__':
     logger.info("Loading datasets:")
 
     if dataset == 1:
-        df_train = pd.read_csv("Datasets/Train_1.csv")
-        df_eval = pd.read_csv("Datasets/Eval_1.csv")
+        df_train = pd.read_csv("Datasets/Train_orig_1.csv", encoding='utf-8')
+        # df_train = pd.read_csv("Datasets/Train_1.csv", encoding='utf-8')
+        df_eval = pd.read_csv("Datasets/Eval_1.csv", encoding='utf-8')
     elif dataset == 2:
-        df_train = pd.read_csv("Datasets/Train_2.csv")
-        df_eval = pd.read_csv("Datasets/Eval_2.csv")
+        df_train = pd.read_csv("Datasets/Train_orig_2.csv", encoding='utf-8')
+        # df_train = pd.read_csv("Datasets/Train_2.csv", encoding='utf-8')
+        df_eval = pd.read_csv("Datasets/Eval_2.csv", encoding='utf-8')
     else:
         logger.critical(f'Wrong dataset type: {dataset}')
         raise Exception('Dataset/sentence type can only be 1 or 2!')
@@ -465,7 +477,6 @@ if __name__ == '__main__':
     logger.info(
         f'Type {dataset} sentence ratio in train/val/test set: {pos_ratio_train}/{pos_ratio_val}/{pos_ratio_test}')
 
-    plot_input_len_dist = False  # True if plot distribution of training sequence (token) lengths
     if plot_input_len_dist:
         token_lens = []
         for txt in df_train["2"]:
@@ -483,6 +494,7 @@ if __name__ == '__main__':
         sns.distplot(token_lens, kde=False)
         plt.xlabel('Token count (train set)')
         plt.show()
+        logger.info(f'Mean token length: {mean(token_lens)}')
     '''
     Max length chosen according to training sequence (token) length distribution.
     Max length 256 -> ~7-8/11-13gb GPU memory required for batch size = 16/32
@@ -495,27 +507,27 @@ if __name__ == '__main__':
     logger.info("Grid search begins: ")
 
     learning_rates = [1e-5]
-    batch_sizes = [64]
+    train_batch_sizes = [64]
     weight_decay_rates = [0.1]
-    logger.info(f'Batch sizes: {batch_sizes}')
+    logger.info(f'Batch sizes: {train_batch_sizes}')
     logger.info(f'Initial learning rates: {learning_rates}')
     logger.info(f'Weight decay: {weight_decay_rates}')
     if not use_bfsc:
         xavier_init = False
         logger.info(f'Xavier initialization: {xavier_init}')
-        drop_rates = 0.3  # Drop rates of the dropout layers
+        drop_rates = 0.3  # Drop rates of the dropout layers outside BERT
         logger.info(f"Drop rates: {drop_rates}")
         hidden_size = None  # None: no hidden layer; 512: single hidden layer of 512 neurons
         logger.info(f'Hidden layer: {hidden_size}')
 
     loss_fn = nn.CrossEntropyLoss().to(device)
 
-    val_f1_grid = np.zeros((len(batch_sizes), len(learning_rates), len(weight_decay_rates)))
-    epoch_grid = np.zeros((len(batch_sizes), len(learning_rates), len(weight_decay_rates)))
+    val_f1_grid = np.zeros((len(train_batch_sizes), len(learning_rates), len(weight_decay_rates)))
+    epoch_grid = np.zeros((len(train_batch_sizes), len(learning_rates), len(weight_decay_rates)))
     best_val_f1_overall = -0.1
     t_tot = 0  # Total grid search time
 
-    for i, bs in enumerate(batch_sizes):
+    for i, bs in enumerate(train_batch_sizes):
         for j, lr in enumerate(learning_rates):
             for k, wd in enumerate(weight_decay_rates):
 
@@ -529,8 +541,8 @@ if __name__ == '__main__':
                 Custom dataset and dataloader.
                 Dataloader (an iterable): load a batch of data each iteration
                 '''
-                train_data_loader = create_data_loader(df_train, tokenizer, MAX_LEN, bs)
-                val_data_loader = create_data_loader(df_val, tokenizer, MAX_LEN, bs)
+                train_data_loader = create_data_loader(df_train, tokenizer, MAX_LEN, bs, shuffle=True)
+                val_data_loader = create_data_loader(df_val, tokenizer, MAX_LEN, bs, shuffle=False)
                 total_steps = len(train_data_loader) * EPOCHS  # len(train_data_loader) = number of (train) batches
 
                 # Build model
@@ -552,6 +564,7 @@ if __name__ == '__main__':
                 '''
                 Weight decay (L2 regularization): data -= lr * weight_decay
                 '''
+                # TODO: cancel weight decay on "bias" and "weight" of layernorm
                 optimizer = AdamW(model.parameters(), lr=lr, correct_bias=False, weight_decay=wd)
                 scheduler = get_linear_schedule_with_warmup(  # Scheduler: change learning rate of optimizer
                     optimizer,
@@ -637,7 +650,7 @@ if __name__ == '__main__':
 
     # Test Model performance on testing set
     logger.info('Testing model performance: ')
-    test_data_loader = create_data_loader(df_test, tokenizer, MAX_LEN, best_bs)
+    test_data_loader = create_data_loader(df_test, tokenizer, MAX_LEN, best_bs, shuffle=False)
     test_precision, test_recall, test_f1, test_acc, _ = eval_model(
         model,
         test_data_loader,
@@ -667,6 +680,7 @@ if __name__ == '__main__':
         "CPU": cpu,
         "GPU count": gpu_count,
         "Device names": device_names,
+        "Evaluation batch size": eval_batch_size,
         "Random seed": RANDOM_SEED,
         "Bert model": PRE_TRAINED_MODEL_NAME,
         "Use 'BertForSequenceClassification'": use_bfsc,
@@ -675,7 +689,7 @@ if __name__ == '__main__':
         "Epochs": EPOCHS,
         "Max length": MAX_LEN,
         "Initial learning rates": learning_rates,
-        "Batch sizes": batch_sizes,
+        "Train batch sizes": train_batch_sizes,
         "Weight decay rates": weight_decay_rates,
         "Drop rate": drop_rates if not use_bfsc else None,
         "Xavier initialization": xavier_init if not use_bfsc else None,
@@ -687,7 +701,7 @@ if __name__ == '__main__':
     }
 
     with open("Results/exp_record_" + time.strftime("%Y%m%d_%H%M%S") + ".json", "w") as outfile:
-        json.dump(exp_record, outfile)
+        json.dump(exp_record, outfile, indent=4)
 
     # Clean up: release GPU memory
     logger.info('')
@@ -697,5 +711,4 @@ if __name__ == '__main__':
     if torch.cuda.is_available():
         cutorch.empty_cache()
         logger.info(f'GPU memory occupied: {cutorch.memory_reserved() / 1e9} gb')
-        # dist.destroy_process_group()
     logger.info('Finished')
