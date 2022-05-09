@@ -1,0 +1,77 @@
+CST 2021-03-24 23:28:14.595 - root - main.py - line 385 - INFO - Initializing:
+CST 2021-03-24 23:28:14.595 - root - main.py - line 388 - INFO - Code being tested: False
+CST 2021-03-24 23:28:14.595 - root - main.py - line 391 - INFO - "BertForSequenceClassification" model is used instead of the plain BERT model: False
+CST 2021-03-24 23:28:15.455 - root - main.py - line 398 - INFO - Use automatic mixed precision: True
+CST 2021-03-24 23:28:15.456 - root - main.py - line 401 - INFO - Plot token length distribution of input: False
+CST 2021-03-24 23:28:15.456 - root - main.py - line 404 - INFO - Dataset: type 1 sentences
+CST 2021-03-24 23:28:15.456 - root - main.py - line 410 - INFO - Tokenizer parallelization: true
+CST 2021-03-24 23:28:16.955 - root - main.py - line 413 - INFO - CPU: Intel(R) Xeon(R) CPU E5-2630L v3 @ 1.80GHz
+CST 2021-03-24 23:28:16.956 - root - main.py - line 418 - INFO - Device count: 1
+CST 2021-03-24 23:28:16.957 - root - main.py - line 420 - INFO - Device name(s): ['GeForce RTX 3090']
+CST 2021-03-24 23:28:16.958 - root - main.py - line 422 - INFO - Batch size for evaluation: 64
+CST 2021-03-24 23:28:16.958 - root - main.py - line 431 - INFO - Random seed: 42
+CST 2021-03-24 23:28:17.001 - root - main.py - line 444 - INFO - Number of epochs: 4
+CST 2021-03-24 23:28:17.001 - root - main.py - line 447 - INFO - 
+CST 2021-03-24 23:28:17.001 - root - main.py - line 448 - INFO - Loading datasets:
+CST 2021-03-24 23:28:17.067 - root - main.py - line 468 - INFO - Number of sentences used for training/validation/testing: 10000/5000/5000
+CST 2021-03-24 23:28:17.070 - root - main.py - line 473 - INFO - Type 1 sentence ratio in train/val/test set: 0.1691/0.1662/0.1632
+CST 2021-03-24 23:28:17.070 - root - main.py - line 498 - INFO - Max length = 256
+CST 2021-03-24 23:28:17.070 - root - main.py - line 501 - INFO - 
+CST 2021-03-24 23:28:17.070 - root - main.py - line 502 - INFO - Grid search begins: 
+CST 2021-03-24 23:28:17.070 - root - main.py - line 507 - INFO - Batch sizes: [64]
+CST 2021-03-24 23:28:17.071 - root - main.py - line 508 - INFO - Initial learning rates: [5e-06, 7e-06]
+CST 2021-03-24 23:28:17.071 - root - main.py - line 509 - INFO - Weight decay: [0.1]
+CST 2021-03-24 23:28:17.071 - root - main.py - line 512 - INFO - Xavier initialization: False
+CST 2021-03-24 23:28:17.071 - root - main.py - line 514 - INFO - Drop rates: 0.3
+CST 2021-03-24 23:28:17.071 - root - main.py - line 516 - INFO - Hidden layer: None
+CST 2021-03-24 23:28:21.011 - root - main.py - line 569 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-24 23:28:21.011 - root - main.py - line 571 - INFO - Batch size: 64, initial learning rate: 5e-06, weight decay rates: 0.1, total steps: 628
+CST 2021-03-24 23:28:21.011 - root - main.py - line 572 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-24 23:28:21.011 - root - main.py - line 580 - INFO - Epoch 1/4
+CST 2021-03-24 23:29:28.168 - root - main.py - line 237 - INFO - Train loss (ave) 0.09570121020823717 accuracy 0.9669 f1 0.8992389649923898 precision 0.9265997490589711 recall 0.8734476641040805
+CST 2021-03-24 23:29:39.216 - root - main.py - line 304 - INFO - Eval loss (ave) 0.05044429487586021 accuracy 0.9832 f1 0.9501187648456058 precision 0.9378663540445487 recall 0.9626955475330926
+CST 2021-03-24 23:29:40.583 - root - main.py - line 580 - INFO - Epoch 2/4
+CST 2021-03-24 23:30:46.918 - root - main.py - line 237 - INFO - Train loss (ave) 0.03587597685214132 accuracy 0.9893 f1 0.9681452813337303 precision 0.9748201438848921 recall 0.9615612063867534
+CST 2021-03-24 23:30:58.015 - root - main.py - line 304 - INFO - Eval loss (ave) 0.04970456474274397 accuracy 0.9864 f1 0.9587878787878787 precision 0.9658119658119658 recall 0.9518652226233454
+CST 2021-03-24 23:30:59.418 - root - main.py - line 580 - INFO - Epoch 3/4
+CST 2021-03-24 23:32:05.913 - root - main.py - line 237 - INFO - Train loss (ave) 0.023991611107438804 accuracy 0.9933 f1 0.9801245921091664 precision 0.9833333333333333 recall 0.976936723832052
+CST 2021-03-24 23:32:17.041 - root - main.py - line 304 - INFO - Eval loss (ave) 0.04939742583483458 accuracy 0.9868 f1 0.9598051157125457 precision 0.9716399506781751 recall 0.9482551143200962
+CST 2021-03-24 23:32:18.414 - root - main.py - line 580 - INFO - Epoch 4/4
+CST 2021-03-24 23:33:24.549 - root - main.py - line 237 - INFO - Train loss (ave) 0.015437143944576383 accuracy 0.9953 f1 0.9860326894502229 precision 0.9910394265232975 recall 0.9810762862211709
+CST 2021-03-24 23:33:35.669 - root - main.py - line 304 - INFO - Eval loss (ave) 0.052490056421607735 accuracy 0.9864 f1 0.9591836734693877 precision 0.9568862275449102 recall 0.9614921780986763
+CST 2021-03-24 23:33:35.670 - root - main.py - line 626 - INFO - 
+CST 2021-03-24 23:33:35.670 - root - main.py - line 627 - INFO - Best validation f1 0.9598051157125457 reached at epoch 3
+CST 2021-03-24 23:33:35.670 - root - main.py - line 628 - INFO - Training time for 4 epochs: 5.2443137486775715 min
+CST 2021-03-24 23:33:38.209 - root - main.py - line 569 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-24 23:33:38.209 - root - main.py - line 571 - INFO - Batch size: 64, initial learning rate: 7e-06, weight decay rates: 0.1, total steps: 628
+CST 2021-03-24 23:33:38.209 - root - main.py - line 572 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-24 23:33:38.209 - root - main.py - line 580 - INFO - Epoch 1/4
+CST 2021-03-24 23:34:44.397 - root - main.py - line 237 - INFO - Train loss (ave) 0.0944570002272725 accuracy 0.9675 f1 0.9017830160169236 precision 0.9221260815822002 recall 0.8823181549379066
+CST 2021-03-24 23:34:55.546 - root - main.py - line 304 - INFO - Eval loss (ave) 0.044749114647507665 accuracy 0.9852 f1 0.9552599758162031 precision 0.959902794653706 recall 0.950661853188929
+CST 2021-03-24 23:34:55.547 - root - main.py - line 580 - INFO - Epoch 2/4
+CST 2021-03-24 23:36:02.100 - root - main.py - line 237 - INFO - Train loss (ave) 0.037934443754702805 accuracy 0.9886 f1 0.9661117717003567 precision 0.9713090257023311 recall 0.960969840331165
+CST 2021-03-24 23:36:13.275 - root - main.py - line 304 - INFO - Eval loss (ave) 0.058498945342004297 accuracy 0.985 f1 0.9554367201426025 precision 0.9436619718309859 recall 0.9675090252707581
+CST 2021-03-24 23:36:13.276 - root - main.py - line 580 - INFO - Epoch 3/4
+CST 2021-03-24 23:37:19.774 - root - main.py - line 237 - INFO - Train loss (ave) 0.01866554617267102 accuracy 0.9943 f1 0.9831010969463385 precision 0.985731272294887 recall 0.9804849201655825
+CST 2021-03-24 23:37:30.956 - root - main.py - line 304 - INFO - Eval loss (ave) 0.05865663469992578 accuracy 0.9856 f1 0.956204379562044 precision 0.966789667896679 recall 0.9458483754512635
+CST 2021-03-24 23:37:30.957 - root - main.py - line 580 - INFO - Epoch 4/4
+CST 2021-03-24 23:38:37.048 - root - main.py - line 237 - INFO - Train loss (ave) 0.008900163680873811 accuracy 0.9974 f1 0.9923076923076923 precision 0.9928952042628775 recall 0.9917208752217622
+CST 2021-03-24 23:38:48.181 - root - main.py - line 304 - INFO - Eval loss (ave) 0.06076868278719485 accuracy 0.9852 f1 0.9552058111380144 precision 0.9610231425091352 recall 0.9494584837545126
+CST 2021-03-24 23:38:48.182 - root - main.py - line 626 - INFO - 
+CST 2021-03-24 23:38:48.182 - root - main.py - line 627 - INFO - Best validation f1 0.956204379562044 reached at epoch 3
+CST 2021-03-24 23:38:48.182 - root - main.py - line 628 - INFO - Training time for 4 epochs: 5.166206669807434 min
+CST 2021-03-24 23:38:48.182 - root - main.py - line 630 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-24 23:38:48.182 - root - main.py - line 631 - INFO - Grid search finished
+CST 2021-03-24 23:38:48.182 - root - main.py - line 632 - INFO - Time consumed: 10.410520418485005 min
+CST 2021-03-24 23:38:48.184 - root - main.py - line 633 - INFO - Validation f1 values [[[0.95980512]
+  [0.95620438]]] reached at epochs [[[3.]
+  [3.]]] respectively
+CST 2021-03-24 23:38:48.184 - root - main.py - line 635 - INFO - Best parameters: batch size = 64, learning rate = 5e-06, weight decay rate = 0.1, training epoch = 3
+CST 2021-03-24 23:38:48.184 - root - main.py - line 639 - INFO - 
+CST 2021-03-24 23:38:48.184 - root - main.py - line 640 - INFO - Loading best model: 
+CST 2021-03-24 23:38:51.063 - root - main.py - line 646 - INFO - Testing model performance: 
+CST 2021-03-24 23:39:02.211 - root - main.py - line 304 - INFO - Eval loss (ave) 0.056003103644773365 accuracy 0.985 f1 0.9536751080914143 precision 0.9613947696139477 recall 0.946078431372549
+CST 2021-03-24 23:39:13.345 - root - main.py - line 701 - INFO - 
+CST 2021-03-24 23:39:13.345 - root - main.py - line 702 - INFO - Cleaning up: 
+CST 2021-03-24 23:39:13.596 - root - main.py - line 707 - INFO - GPU memory occupied: 0.0 gb
+CST 2021-03-24 23:39:13.596 - root - main.py - line 708 - INFO - Finished

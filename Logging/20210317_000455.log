@@ -1,0 +1,313 @@
+CST 2021-03-17 00:04:55.173 - root - main.py - line 349 - INFO - Initializing:
+CST 2021-03-17 00:04:55.173 - root - main.py - line 352 - INFO - Code being tested: False
+CST 2021-03-17 00:04:55.173 - root - main.py - line 355 - INFO - "BertForSequenceClassification" model is used instead of the plain BERT model: False
+CST 2021-03-17 00:04:55.173 - root - main.py - line 358 - INFO - Dataset: type 1 sentences
+CST 2021-03-17 00:04:55.173 - root - main.py - line 364 - INFO - Tokenizer parallelization: true
+CST 2021-03-17 00:04:56.628 - root - main.py - line 367 - INFO - CPU type: Intel(R) Xeon(R) CPU E5-2630L v3 @ 1.80GHz
+CST 2021-03-17 00:04:56.690 - root - main.py - line 370 - INFO - Device: GeForce RTX 3090
+CST 2021-03-17 00:04:56.690 - root - main.py - line 377 - INFO - Random seed: 42
+CST 2021-03-17 00:04:56.730 - root - main.py - line 390 - INFO - Number of epochs: 4
+CST 2021-03-17 00:04:56.730 - root - main.py - line 393 - INFO - 
+CST 2021-03-17 00:04:56.730 - root - main.py - line 394 - INFO - Loading datasets:
+CST 2021-03-17 00:04:56.783 - root - main.py - line 404 - INFO - Type 1 sentence ratio: 0.1525
+CST 2021-03-17 00:04:56.784 - root - main.py - line 415 - INFO - Number of sentences used for training/validation/testing: 10000/5000/5000
+CST 2021-03-17 00:04:59.694 - matplotlib.font_manager - font_manager.py - line 1334 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
+CST 2021-03-17 00:04:59.695 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.695 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.695 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.695 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.696 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+CST 2021-03-17 00:04:59.697 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Old South Arabian' (NotoSansOldSouthArabian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.698 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Kaithi' (NotoSansKaithi-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Gujarati UI' (NotoSansGujaratiUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Old Persian' (NotoSansOldPersian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tamil' (NotoSansTamil-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Telugu' (NotoSansTelugu-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Telugu UI' (NotoSansTeluguUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Buginese' (NotoSansBuginese-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Ethiopic' (NotoSansEthiopic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Thai' (NotoSerifThai-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Display' (NotoSerifDisplay-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tibetan' (NotoSansTibetan-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.699 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Lydian' (NotoSansLydian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Oxygen-Sans' (Oxygen-Sans.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Armenian' (NotoSerifArmenian-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Adlam Unjoined' (NotoSansAdlamUnjoined-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Kayah Li' (NotoSansKayahLi-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Cham' (NotoSansCham-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Display' (NotoSerifDisplay-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif' (NotoSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Syriac Western' (NotoSansSyriacWestern-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Georgian' (NotoSerifGeorgian-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif' (NotoSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Thai UI' (NotoSansThaiUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.700 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Mongolian' (NotoSansMongolian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Myanmar' (NotoSansMyanmar-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Thai' (NotoSansThai-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Yi' (NotoSansYi-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Devanagari' (NotoSansDevanagari-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Tamil' (NotoSerifTamil-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Thaana' (NotoSansThaana-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tai Tham' (NotoSansTaiTham-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Bengali UI' (NotoSansBengaliUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Bengali' (NotoSansBengali-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Cuneiform' (NotoSansCuneiform-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Oriya' (NotoSansOriya-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.701 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans' (NotoSans-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Khmer' (NotoSansKhmer-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Oriya UI' (NotoSansOriyaUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Sinhala' (NotoSerifSinhala-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Hebrew' (NotoSansHebrew-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Sinhala UI' (NotoSansSinhalaUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Osmanya' (NotoSansOsmanya-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Sundanese' (NotoSansSundanese-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Ol Chiki' (NotoSansOlChiki-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Myanmar' (NotoSerifMyanmar-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Carian' (NotoSansCarian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Hebrew' (NotoSerifHebrew-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif CJK JP' (NotoSerifCJK-Regular.ttc) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.702 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Naskh Arabic' (NotoNaskhArabic-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Myanmar' (NotoSerifMyanmar-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Kufi Arabic' (NotoKufiArabic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Imperial Aramaic' (NotoSansImperialAramaic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Gujarati UI' (NotoSansGujaratiUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Hebrew' (NotoSerifHebrew-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Gurmukhi UI' (NotoSansGurmukhiUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Mono' (NotoSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Kannada' (NotoSerifKannada-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Limbu' (NotoSansLimbu-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans CJK JP' (NotoSansCJK-Regular.ttc) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Syriac Estrangela' (NotoSansSyriacEstrangela-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.703 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Devanagari' (NotoSansDevanagari-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Myanmar' (NotoSansMyanmar-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Devanagari' (NotoSerifDevanagari-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Ogham' (NotoSansOgham-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Hebrew' (NotoSansHebrew-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Gujarati' (NotoSansGujarati-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Kannada UI' (NotoSansKannadaUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Display' (NotoSansDisplay-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Kannada' (NotoSansKannada-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Malayalam' (NotoSansMalayalam-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Malayalam' (NotoSerifMalayalam-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Egyptian Hieroglyphs' (NotoSansEgyptianHieroglyphs-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.704 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Phags Pa' (NotoSansPhagsPa-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tagalog' (NotoSansTagalog-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Khmer' (NotoSerifKhmer-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Avestan' (NotoSansAvestan-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Sinhala' (NotoSansSinhala-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans New Tai Lue' (NotoSansNewTaiLue-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Gothic' (NotoSansGothic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Devanagari UI' (NotoSansDevanagariUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tifinagh' (NotoSansTifinagh-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Glagolitic' (NotoSansGlagolitic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Oriya UI' (NotoSansOriyaUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tamil UI' (NotoSansTamilUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.705 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Old Turkic' (NotoSansOldTurkic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Arabic' (NotoSansArabic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Naskh Arabic UI' (NotoNaskhArabicUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Georgian' (NotoSerifGeorgian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Lao UI' (NotoSansLaoUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Cherokee' (NotoSansCherokee-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Syloti Nagri' (NotoSansSylotiNagri-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Display' (NotoSansDisplay-Italic.ttf) italic normal 400 normal>) = 11.05
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Sinhala UI' (NotoSansSinhalaUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Naskh Arabic UI' (NotoNaskhArabicUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Phoenician' (NotoSansPhoenician-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.706 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif' (NotoSerif-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Gujarati' (NotoSerifGujarati-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Lao' (NotoSansLao-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Hack' (Hack-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Telugu' (NotoSansTelugu-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tamil' (NotoSansTamil-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Kharoshthi' (NotoSansKharoshthi-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Thai' (NotoSerifThai-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Kannada' (NotoSansKannada-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Ethiopic' (NotoSerifEthiopic-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Armenian' (NotoSansArmenian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Ethiopic' (NotoSansEthiopic-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.707 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tamil UI' (NotoSansTamilUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Symbols2' (NotoSansSymbols2-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Kufi Arabic' (NotoKufiArabic-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Oxygen Mono' (OxygenMono-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Mono' (NotoMono-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Armenian' (NotoSerifArmenian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Khmer' (NotoSerifKhmer-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Anatolian Hieroglyphs' (NotoSansAnatolianHieroglyphs-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Naskh Arabic' (NotoNaskhArabic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tibetan' (NotoSansTibetan-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Brahmi' (NotoSansBrahmi-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif' (NotoSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+CST 2021-03-17 00:04:59.708 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tai Le' (NotoSansTaiLe-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Gurmukhi' (NotoSansGurmukhi-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Telugu' (NotoSerifTelugu-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans' (NotoSans-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Deseret' (NotoSansDeseret-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Cham' (NotoSansCham-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Tamil' (NotoSerifTamil-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Samaritan' (NotoSansSamaritan-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Thaana' (NotoSansThaana-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Lycian' (NotoSansLycian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Thai' (NotoSansThai-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.709 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Oxygen-Sans' (Oxygen-Sans-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Bamum' (NotoSansBamum-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Kannada UI' (NotoSansKannadaUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Hack' (Hack-Italic.ttf) italic normal 400 normal>) = 11.05
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Javanese' (NotoSansJavanese-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Batak' (NotoSansBatak-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Sinhala' (NotoSerifSinhala-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Lao' (NotoSerifLao-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Mono' (NotoSansMono-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Bengali UI' (NotoSansBengaliUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Devanagari UI' (NotoSansDevanagariUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Ethiopic' (NotoSerifEthiopic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.710 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Linear B' (NotoSansLinearB-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Cypriot' (NotoSansCypriot-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Chakma' (NotoSansChakma-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Malayalam UI' (NotoSansMalayalamUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Georgian' (NotoSansGeorgian-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Lao' (NotoSerifLao-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Lepcha' (NotoSansLepcha-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Arabic UI' (NotoSansArabicUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Hack' (Hack-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Display' (NotoSerifDisplay-Italic.ttf) italic normal 400 normal>) = 11.05
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans' (NotoSans-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Hanunoo' (NotoSansHanunoo-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif CJK JP' (NotoSerifCJK-Bold.ttc) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.711 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Runic' (NotoSansRunic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Oriya' (NotoSansOriya-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Telugu UI' (NotoSansTeluguUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Malayalam' (NotoSansMalayalam-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Georgian' (NotoSansGeorgian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Armenian' (NotoSansArmenian-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Gujarati' (NotoSansGujarati-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Myanmar UI' (NotoSansMyanmarUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Malayalam' (NotoSerifMalayalam-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans' (NotoSans-Italic.ttf) italic normal 400 normal>) = 11.05
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Old Italic' (NotoSansOldItalic-Regular.ttf) italic normal 400 normal>) = 11.05
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Adlam' (NotoSansAdlam-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.712 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Arabic' (NotoSansArabic-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Gujarati' (NotoSerifGujarati-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Devanagari' (NotoSerifDevanagari-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Ugaritic' (NotoSansUgaritic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tai Viet' (NotoSansTaiViet-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Shavian' (NotoSansShavian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Display' (NotoSansDisplay-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Cherokee' (NotoSansCherokee-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Inscriptional Pahlavi' (NotoSansInscriptionalPahlavi-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Osage' (NotoSansOsage-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Bengali' (NotoSerifBengali-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+CST 2021-03-17 00:04:59.713 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Inscriptional Parthian' (NotoSansInscriptionalParthian-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Malayalam UI' (NotoSansMalayalamUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Thai UI' (NotoSansThaiUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Tagbanwa' (NotoSansTagbanwa-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Telugu' (NotoSerifTelugu-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans CJK JP' (NotoSansCJK-Bold.ttc) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Kannada' (NotoSerifKannada-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Symbols' (NotoSansSymbols-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Lao UI' (NotoSansLaoUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Coptic' (NotoSansCoptic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Gurmukhi UI' (NotoSansGurmukhiUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Bengali' (NotoSerifBengali-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Balinese' (NotoSansBalinese-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.714 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Rejang' (NotoSansRejang-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Khmer UI' (NotoSansKhmerUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Gurmukhi' (NotoSansGurmukhi-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Symbols' (NotoSansSymbols-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Khmer UI' (NotoSansKhmerUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Buhid' (NotoSansBuhid-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Mandaic' (NotoSansMandaic-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Sinhala' (NotoSansSinhala-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Saurashtra' (NotoSansSaurashtra-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Myanmar UI' (NotoSansMyanmarUI-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Arabic UI' (NotoSansArabicUI-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Lisu' (NotoSansLisu-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.715 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Canadian Aboriginal' (NotoSansCanadianAboriginal-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Vai' (NotoSansVai-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Nastaliq Urdu' (NotoNastaliqUrdu-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Serif Display' (NotoSerifDisplay-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Meetei Mayek' (NotoSansMeeteiMayek-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans NKo' (NotoSansNKo-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Khmer' (NotoSansKhmer-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Display' (NotoSansDisplay-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Bengali' (NotoSansBengali-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Hack' (Hack-Bold.ttf) normal normal 700 normal>) = 10.335
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Syriac Eastern' (NotoSansSyriacEastern-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.716 - matplotlib.font_manager - font_manager.py - line 1346 - DEBUG - findfont: score(<Font 'Noto Sans Lao' (NotoSansLao-Regular.ttf) normal normal 400 normal>) = 10.05
+CST 2021-03-17 00:04:59.717 - matplotlib.font_manager - font_manager.py - line 1367 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('/usr/local/lib/python3.6/dist-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
+CST 2021-03-17 00:05:01.837 - root - main.py - line 440 - INFO - Max length = 400
+CST 2021-03-17 00:05:01.837 - root - main.py - line 443 - INFO - 
+CST 2021-03-17 00:05:01.838 - root - main.py - line 444 - INFO - Grid search begins: 
+CST 2021-03-17 00:05:01.838 - root - main.py - line 448 - INFO - Batch sizes: [32]
+CST 2021-03-17 00:05:01.838 - root - main.py - line 449 - INFO - Initial learning rates: [7e-06]
+CST 2021-03-17 00:05:01.838 - root - main.py - line 452 - INFO - Xavier initialization: False
+CST 2021-03-17 00:05:01.838 - root - main.py - line 454 - INFO - Drop rates: 0.3
+CST 2021-03-17 00:05:01.838 - root - main.py - line 456 - INFO - Hidden layer: None
+CST 2021-03-17 00:05:05.776 - root - main.py - line 499 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-17 00:05:05.776 - root - main.py - line 500 - INFO - Batch size: 32, initial learning rate: 7e-06, total steps: 1252
+CST 2021-03-17 00:05:05.776 - root - main.py - line 501 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-17 00:05:05.777 - root - main.py - line 509 - INFO - Epoch 1/4
+CST 2021-03-17 00:07:32.188 - root - main.py - line 523 - INFO - Train loss 0.002457725533476332 accuracy 0.9759 f1 0.9209576910462447 precision 0.9291859695565851 recall 0.9128738621586476
+CST 2021-03-17 00:07:57.243 - root - main.py - line 536 - INFO - Val loss 0.001267775584582705 accuracy 0.9884 f1 0.9613848202396804 precision 0.9575596816976127 recall 0.9652406417112299
+CST 2021-03-17 00:07:58.918 - root - main.py - line 509 - INFO - Epoch 2/4
+CST 2021-03-17 00:10:24.401 - root - main.py - line 523 - INFO - Train loss 0.0009196694635233144 accuracy 0.9918 f1 0.9733246584255042 precision 0.9739583333333334 recall 0.9726918075422627
+CST 2021-03-17 00:10:49.454 - root - main.py - line 536 - INFO - Val loss 0.001465163882187335 accuracy 0.9894 f1 0.9650626235992089 precision 0.951885565669701 recall 0.9786096256684492
+CST 2021-03-17 00:10:51.061 - root - main.py - line 509 - INFO - Epoch 3/4
+CST 2021-03-17 00:13:16.034 - root - main.py - line 523 - INFO - Train loss 0.00039100248289323646 accuracy 0.9967 f1 0.9892543145555194 precision 0.9908675799086758 recall 0.9876462938881665
+CST 2021-03-17 00:13:41.079 - root - main.py - line 536 - INFO - Val loss 0.0013770338857008028 accuracy 0.9904 f1 0.9681274900398406 precision 0.9617414248021108 recall 0.9745989304812834
+CST 2021-03-17 00:13:42.586 - root - main.py - line 509 - INFO - Epoch 4/4
+CST 2021-03-17 00:16:07.947 - root - main.py - line 523 - INFO - Train loss 0.00018193960442295065 accuracy 0.9985 f1 0.9951219512195122 precision 0.9954456733897202 recall 0.9947984395318595
+CST 2021-03-17 00:16:32.988 - root - main.py - line 536 - INFO - Val loss 0.0014331185483897572 accuracy 0.9912 f1 0.9705882352941176 precision 0.9705882352941176 recall 0.9705882352941176
+CST 2021-03-17 00:16:34.487 - root - main.py - line 553 - INFO - 
+CST 2021-03-17 00:16:34.488 - root - main.py - line 554 - INFO - Best validation f1 0.9705882352941176 reached at epoch 4
+CST 2021-03-17 00:16:34.488 - root - main.py - line 555 - INFO - Training time for 4 epochs: 11.478514436880747 min
+CST 2021-03-17 00:16:34.488 - root - main.py - line 557 - INFO - ----------------------------------------------------------------------------------------------------
+CST 2021-03-17 00:16:34.488 - root - main.py - line 558 - INFO - Grid search finished
+CST 2021-03-17 00:16:34.488 - root - main.py - line 559 - INFO - Time consumed: 11.478514436880747 min
+CST 2021-03-17 00:16:34.489 - root - main.py - line 560 - INFO - Validation f1 values [[0.97058824]] reached at epochs [[4.]] respectively
+CST 2021-03-17 00:16:34.489 - root - main.py - line 562 - INFO - Best parameters: batch size = 32, learning rate = 7e-06, training epoch = 4
+CST 2021-03-17 00:16:34.489 - root - main.py - line 565 - INFO - 
+CST 2021-03-17 00:16:34.490 - root - main.py - line 566 - INFO - Loading best model: 
+CST 2021-03-17 00:16:34.709 - root - main.py - line 572 - INFO - Testing model performance: 
+CST 2021-03-17 00:16:59.731 - root - main.py - line 583 - INFO - Test accuracy 0.9872 f1 0.9582790091264668 precision 0.9545454545454546 recall 0.9620418848167539
+CST 2021-03-17 00:17:24.671 - root - main.py - line 623 - INFO - 
+CST 2021-03-17 00:17:24.671 - root - main.py - line 624 - INFO - Releasing GPU memory: 
+CST 2021-03-17 00:17:24.985 - root - main.py - line 628 - INFO - GPU memory occupied: 0.0 gb
